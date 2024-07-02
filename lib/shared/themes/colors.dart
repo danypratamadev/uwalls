@@ -2,36 +2,33 @@ import 'package:flutter/material.dart';
 
 class AppColors {
 
-  static Color primaryColor = Colors.blue.shade600;
+  static const Color primaryColor = Color(0xFFA8FB3C);
 
-  static Color accentGreen = Colors.green.shade600;
-  static Color accentOrange = Colors.orange.shade600;
-  static Color accentRed = Colors.red.shade600;
-  static Color accentPink = Colors.pink.shade600;
-  static Color accentIndigo = Colors.indigo.shade600;
-  static Color accentPurple = Colors.purple.shade600;
-  static Color accentBlue = Colors.blue.shade600;
-  static Color accentDeepOrange = Colors.deepOrange.shade600;
-  static Color accentBrown = Colors.brown.shade600;
-  static Color accentBlueGrey = Colors.blueGrey.shade600;
-  static Color accentAmber = Colors.amber.shade600;
-  static Color accentTeal = Colors.teal.shade600;
+  static const Color darkAccentGreen = Color(0xFF64BE68);
+  static const Color darkAccentOrange = Color(0xFFFFA93C);
+  static const Color darkAccentRed = Color(0xFFEC706D);
+  static const Color darkAccentPink = Color(0xFFE84A84);
+  static const Color darkAccentIndigo = Color(0xFF5B6BC8);
+  static const Color darkAccentPurple = Color(0xFFB439D5);
+  static const Color darkAccentBlue = Color(0xFF57A6EC);
+  static const Color darkAccentDeepOrange = Color(0xFFF7805B);
+  static const Color darkAccentBrown = Color(0xFF956859);
+  static const Color darkAccentBlueGrey = Color(0xFF718F9D);
+  static const Color darkAccentAmber = Color(0xFFFFC640);
+  static const Color darkAccentTeal = Color(0xFF00C9B4);
 
-  static const Color scaffoldColor = Color(0xFFF8F9FE);
-  static const Color backgroundColor = Colors.white;
-  static const Color secondaryBgColor = Color(0xFFF7F7FC);
+  static const Color scaffoldColor = Color(0xFF000000);
+  static const Color backgroundColor = Color(0xFF1B1B1F);
+  static const Color secondaryBgColor = Color(0xFF25252B);
 
-  static Color primaryTextColor = Colors.grey.shade800;
-  static const Color secondaryTextColor = Color(0xBF3C3C43);
-  static const Color tertiaryTextColor = Color(0x663C3C43);
+  static const Color primaryTextColor = Color(0xFFF5F5F5);
+  static const Color secondaryTextColor = Color(0x99F5F5F5);
+  static const Color tertiaryTextColor = Color(0x59F5F5F5);
   static Color whiteTextColor = Colors.grey.shade50;
 
-  static const Color dividerColor = Colors.black12;
+  static const Color dividerColor = Colors.white12;
 
-  static Color primaryIconColor = Colors.grey.shade800;
-  static const Color secondaryIconColor = Colors.black45;
-
-  static Color primaryShadowColor = Colors.blueGrey.shade200;
-  static const Color secondaryShadowColor = Colors.black12;
+  static Color primaryIconColor = Colors.grey.shade50;
+  static const Color secondaryIconColor = Colors.white24;
 
 }
