@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "17404392645",
+    "project_id": "uwalls-caa87",
+    "storage_bucket": "uwalls-caa87.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:17404392645:android:20bf99b2d692ffb570acac",
+        "android_client_info": {
+          "package_name": "com.dany.dev.uwalls"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhtNMoX7KhXX2Qrx16eQt2lSnX4AgRzng"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
