@@ -62,4 +62,12 @@ class ExploreModel {
     'updated_at': DateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").format(updated),
   };
 
+  @override
+  bool operator ==(Object other) {
+    return other is ExploreModel && other.hashCode == hashCode;
+  }
+
+  @override
+  int get hashCode => Object.hash(id, slug);
+
 }

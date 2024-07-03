@@ -4,6 +4,7 @@ import 'package:uwalls/data/endpoint/api_response.dart';
 import 'package:uwalls/data/endpoint/api_status.dart';
 import 'package:uwalls/data/repository/unsplash_repo_imp.dart';
 import 'package:uwalls/models/explore_model.dart';
+import 'package:uwalls/shared/utils/stateid.dart';
 
 class ExploreController extends GetxController {
 
@@ -15,6 +16,10 @@ class ExploreController extends GetxController {
   List<ExploreModel> listExplore = <ExploreModel>[];
 
   ScrollController exploreController = ScrollController();
+
+  bool setupListen = false;
+  bool regetExplore = false;
+  bool regetLoading = false;
   
   @override
   void onReady() {
@@ -31,9 +36,35 @@ class ExploreController extends GetxController {
   void setExploreValue({required ApiResponse<List<ExploreModel>> res}) {
     exploreStatus = res.status!;
     if(res.status == ApiStatus.complete) {
-      listExplore = res.data!;
+      if(regetExplore){
+        listExplore.addAll(res.data!);
+        listExplore = listExplore.toSet().toList();
+        regetExplore = false;
+        regetLoading = false;
+        update([AppStateId.explore, AppStateId.regetExplore]);
+      } else {
+        listExplore = res.data!;
+        update([AppStateId.explore]);
+      }
+      if(!setupListen){
+        listenController();
+      }
     }
-    update();
+  }
+
+  void listenController() {
+    setupListen = true;
+    exploreController.addListener(() {
+      double pixels = exploreController.position.pixels;
+      double maxScroll = exploreController.position.maxScrollExtent;
+      if(pixels == maxScroll && !regetExplore) {
+        currentPage += 1;
+        regetExplore = true;
+        regetLoading = true;
+        Future.delayed(const Duration(milliseconds: 500), () => fetchExlopre());
+        update([AppStateId.regetExplore]);
+      }
+    });
   }
 
 }

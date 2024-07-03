@@ -9,35 +9,11 @@ import 'package:uwalls/shared/themes/colors.dart';
 import 'package:uwalls/shared/themes/dimens.dart';
 import 'package:uwalls/shared/themes/shortcut.dart';
 
-class ExploreGridview extends StatelessWidget {
-
-  final List<ExploreModel> listExplore;
-
-  const ExploreGridview({super.key, required this.listExplore});
-
-  @override
-  Widget build(BuildContext context) {
-    return GridView.builder(
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        mainAxisSpacing: AppDimens.primaryPaddingSize,
-        crossAxisSpacing: AppDimens.primaryPaddingSize,
-        childAspectRatio: 3/4,
-      ), 
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      padding: EdgeInsets.zero,
-      itemCount: listExplore.length,
-      itemBuilder: (context, index) => ExploreGridItem(explore: listExplore[index]),
-    );
-  }
-}
-
-class ExploreGridItem extends StatelessWidget {
+class ExploreCard extends StatelessWidget {
 
   final ExploreModel explore;
 
-  const ExploreGridItem({super.key, required this.explore});
+  const ExploreCard({super.key, required this.explore});
 
   @override
   Widget build(BuildContext context) {
@@ -51,9 +27,15 @@ class ExploreGridItem extends StatelessWidget {
       smoothness: AppDimens.smoothnessCorner,
       child: Stack(
         children: [
-          ImageNetwork(
-            width: double.maxFinite,
-            url: explore.urls.thumb,
+          Positioned(
+            left: 0.0,
+            right: 0.0,
+            top: 0.0,
+            bottom: 0.0,
+            child: ImageNetwork(
+              width: double.maxFinite,
+              url: explore.urls.thumb,
+            ),
           ),
           Positioned(
             left: 0.0,
@@ -73,7 +55,7 @@ class ExploreGridItem extends StatelessWidget {
                       crossAxisAlignment: startCrossAxis,
                       children: [
                         CaptionText(
-                          label: explore.user.name,
+                          label: explore.altDescription,
                           fontWeight: fontMedium,
                           textColor: bgColor.computeLuminance() < 0.5 ? AppColors.whiteTextColor : themeApp.scaffoldBackgroundColor,
                           maxLines: 1,
