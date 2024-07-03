@@ -1,11 +1,14 @@
 import 'package:get/get.dart';
+import 'package:uwalls/bindings/explore_binding.dart';
 import 'package:uwalls/views/pages/login_page.dart';
+import 'package:uwalls/views/pages/main_page.dart';
 import 'package:uwalls/views/pages/splash_page.dart';
 
 class AppRoutes {
 
   static const rootRoute = '/';
   static const loginRoute = '/login';
+  static const mainRoute = '/uwalls';
 
   static final routes = [
     GetPage(
@@ -15,6 +18,13 @@ class AppRoutes {
     GetPage(
       name: loginRoute, 
       page: () => const LoginPage()
+    ),
+    GetPage(
+      name: mainRoute, 
+      page: () => const MainPage(),
+      bindings: [
+        ExploreBinding()
+      ]
     ),
   ];
 

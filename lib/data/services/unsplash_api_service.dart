@@ -10,10 +10,10 @@ class UnsplashApiService extends BaseApiService {
   Dio dio = Dio();
 
   @override
-  Future getResponse({required String url, header}) async {
+  Future getResponse({required String url, params, header}) async {
     dynamic result;
     try {
-      final response = await dio.get(baseUrl + url, options: Options(headers: header))
+      final response = await dio.get(baseUrl + url, queryParameters: params, options: Options(headers: header))
         .timeout(Duration(seconds: timeOutRequest));
       result = returnResponse(res: response);
     } on SocketException {

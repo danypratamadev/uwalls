@@ -6,7 +6,7 @@ abstract class BaseApiService {
 
   final int timeOutRequest = 20;
 
-  Future<dynamic> getResponse({required String url, dynamic header}) async {}
+  Future<dynamic> getResponse({required String url, dynamic params, dynamic header}) async {}
   Future<dynamic> postResponse({required String url, dynamic header, dynamic body}) async {}
   Future<dynamic> deleteResponse({required String url, dynamic header, dynamic body}) async {}
   dynamic returnResponse({required Response res});

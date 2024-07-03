@@ -426,7 +426,7 @@ class OverlineText extends StatelessWidget {
         color: textColor ?? themeApp.textTheme.labelSmall?.color,
         fontWeight: fontWeight ?? fontLight,
         height: heightSpaceing,
-        letterSpacing: letterSpaceing,
+        letterSpacing: letterSpaceing ?? 0.0,
       ),
       textAlign: textAlign ?? startText,
       maxLines: maxLines ?? 5,

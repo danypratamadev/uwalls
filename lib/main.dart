@@ -2,6 +2,7 @@ import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:uwalls/bindings/app_binding.dart';
 import 'package:uwalls/firebase_options.dart';
 import 'package:uwalls/shared/routes/routes.dart';
 import 'package:uwalls/shared/themes/theme.dart';
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
         darkTheme: dark,
         initialRoute: AppRoutes.rootRoute,
         getPages: AppRoutes.routes,
+        initialBinding: AppBinding(),
         debugShowCheckedModeBanner: false,
       ),
     );
