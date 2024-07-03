@@ -43,7 +43,7 @@ class ExplorePage extends StatelessWidget {
                   bottom: (mediaApp.viewPadding.bottom + kBottomNavigationBarHeight + AppDimens.primaryPaddingSize),
                 ),
                 itemCount: value.listExplore.length,
-                itemBuilder: (context, index) => ExploreCard(explore: value.listExplore[index]),
+                itemBuilder: (context, index) => ExploreCard(photo: value.listExplore[index]),
               ) : BodyText(label: value.exploreStatus.toString())
             ),
           ),
@@ -55,8 +55,10 @@ class ExplorePage extends StatelessWidget {
               bottom: value.regetLoading ? (mediaApp.viewPadding.bottom + kBottomNavigationBarHeight + AppDimens.primaryPaddingSize) : -AppDimens.primaryPaddingSize,
               duration: const Duration(milliseconds: 500),
               curve: Curves.fastOutSlowIn,
-              child: const Center(
-                child: AlertLoading()
+              child: Center(
+                child: AlertLoading(
+                  animating: value.regetLoading,
+                )
               )
             ),
           )

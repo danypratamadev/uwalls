@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:uwalls/data/endpoint/api_response.dart';
 import 'package:uwalls/data/endpoint/api_status.dart';
 import 'package:uwalls/data/repository/unsplash_repo_imp.dart';
-import 'package:uwalls/models/explore_model.dart';
+import 'package:uwalls/models/photo_model.dart';
 import 'package:uwalls/shared/utils/stateid.dart';
 
 class ExploreController extends GetxController {
@@ -13,7 +13,7 @@ class ExploreController extends GetxController {
   int currentPage = 1;
 
   ApiStatus exploreStatus = ApiStatus.loading;
-  List<ExploreModel> listExplore = <ExploreModel>[];
+  List<PhotoModel> listExplore = <PhotoModel>[];
 
   ScrollController exploreController = ScrollController();
 
@@ -33,7 +33,7 @@ class ExploreController extends GetxController {
       .onError((e, stackTrace) => setExploreValue(res: ApiResponse.error(message: e.toString())));
   }
 
-  void setExploreValue({required ApiResponse<List<ExploreModel>> res}) {
+  void setExploreValue({required ApiResponse<List<PhotoModel>> res}) {
     exploreStatus = res.status!;
     if(res.status == ApiStatus.complete) {
       if(regetExplore){

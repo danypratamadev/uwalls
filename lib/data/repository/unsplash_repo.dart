@@ -1,5 +1,5 @@
-import 'package:uwalls/models/explore_model.dart';
+import 'package:uwalls/models/photo_model.dart';
 
 abstract class UnsplashRepo {
-  Future<List<ExploreModel>?> getExplore({required int page});
+  Future<List<PhotoModel>?> getExplore({required int page});
 }

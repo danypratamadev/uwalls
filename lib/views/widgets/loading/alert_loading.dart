@@ -8,7 +8,10 @@ import 'package:uwalls/shared/themes/dimens.dart';
 import 'package:uwalls/shared/themes/shortcut.dart';
 
 class AlertLoading extends StatelessWidget {
-  const AlertLoading({super.key});
+
+  final bool? animating;
+
+  const AlertLoading({super.key, this.animating});
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +25,8 @@ class AlertLoading extends StatelessWidget {
         filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
         child: Material(
           color: themeApp.scaffoldBackgroundColor.withOpacity(0.5),
-          child: const Padding(
-            padding: EdgeInsets.symmetric(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
               horizontal: AppDimens.size10,
               vertical: AppDimens.size6
             ),
@@ -32,9 +35,10 @@ class AlertLoading extends StatelessWidget {
               children: [
                 CupertinoActivityIndicator(
                   radius: AppDimens.size7,
+                  animating: animating ?? true,
                 ),
                 AppDimens.gap8,
-                CaptionText(
+                const CaptionText(
                   label: 'LOADING',
                   fontWeight: fontMedium,
                 ),

@@ -62,10 +62,6 @@ class ImageNetwork extends StatelessWidget {
     return SmoothClipRRect(
       borderRadius: BorderRadius.circular(radius ?? 0.0),
       smoothness: AppDimens.smoothnessCorner,
-      side: BorderSide(
-        width: AppDimens.tertiaryDividerSize,
-        color: themeApp.dividerColor
-      ),
       child: CachedNetworkImage(
         width: width,
         height: height,

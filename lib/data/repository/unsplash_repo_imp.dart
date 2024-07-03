@@ -3,7 +3,7 @@ import 'package:uwalls/data/endpoint/api_end_points.dart';
 import 'package:uwalls/data/repository/unsplash_repo.dart';
 import 'package:uwalls/data/services/base_api_service.dart';
 import 'package:uwalls/data/services/unsplash_api_service.dart';
-import 'package:uwalls/models/explore_model.dart';
+import 'package:uwalls/models/photo_model.dart';
 
 class UnsplashRepoImp implements UnsplashRepo {
 
@@ -12,7 +12,7 @@ class UnsplashRepoImp implements UnsplashRepo {
   final BaseApiService apiService = UnsplashApiService();
   
   @override
-  Future<List<ExploreModel>?> getExplore({required int page}) async {
+  Future<List<PhotoModel>?> getExplore({required int page}) async {
     try {
       dynamic response = await apiService.getResponse(
         url: ApiEndPoints.photos,
@@ -25,8 +25,8 @@ class UnsplashRepoImp implements UnsplashRepo {
           'per_page': 10,
         }
       );
-      List<ExploreModel> result = List<ExploreModel>.from(response.map((data) => 
-        ExploreModel.fromJson(json: data)));
+      List<PhotoModel> result = List<PhotoModel>.from(response.map((data) => 
+        PhotoModel.fromJson(json: data)));
       return result;
     } catch (e) {
       rethrow;

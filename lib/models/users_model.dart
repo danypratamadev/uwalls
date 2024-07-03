@@ -2,6 +2,7 @@ class UsersModel {
 
   final String id;
   final String username;
+  final AvatarModel avatar;
   final String name;
   final String bio;
   final String location;
@@ -14,6 +15,7 @@ class UsersModel {
   const UsersModel({
     required this.id, 
     required this.username, 
+    required this.avatar, 
     required this.name, 
     required this.bio, 
     required this.location, 
@@ -27,6 +29,7 @@ class UsersModel {
   factory UsersModel.fromJson({required Map<String, dynamic> json}) => UsersModel(
     id: json['id'] ?? '-',
     username: json['username'] ?? '-',
+    avatar: AvatarModel.fromJson(json: json['profile_image']),
     name: json['name'] ?? '-',
     bio: json['bio'] ?? '-',
     location: json['location'] ?? '-',
@@ -40,6 +43,7 @@ class UsersModel {
   Map<String, dynamic> toJson() => {
     'id': id,
     'username': username,
+    'profile_image': avatar.toJson(),
     'name': name,
     'bio': bio,
     'location': location,
@@ -48,6 +52,32 @@ class UsersModel {
     'total_likes': likes,
     'total_photos': photos,
     'total_illustrations': illustrations,
+  };
+
+}
+
+class AvatarModel {
+
+  final String small;
+  final String medium;
+  final String large;
+
+  const AvatarModel({
+    required this.small, 
+    required this.medium, 
+    required this.large
+  });
+
+  factory AvatarModel.fromJson({required Map<String, dynamic> json}) => AvatarModel(
+    small: json['small'] ?? '-', 
+    medium: json['medium'] ?? '-', 
+    large: json['large'] ?? '-',
+  );
+
+  Map<String, dynamic> toJson() => {
+    'small': small,
+    'medium': medium,
+    'large': large,
   };
 
 }
