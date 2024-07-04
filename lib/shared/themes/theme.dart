@@ -14,11 +14,11 @@ class AppTheme {
     scaffoldBackgroundColor: AppColors.scaffoldColor,
     colorScheme: ColorScheme.fromSwatch(
       backgroundColor: AppColors.backgroundColor,
-      primarySwatch: Colors.orange,
+      primarySwatch: Colors.green,
       brightness: Brightness.dark,
     ),
     primaryColor: AppColors.primaryColor,
-    primarySwatch: Colors.orange,
+    primarySwatch: Colors.green,
     cardColor: AppColors.backgroundColor,
     appBarTheme: AppBarTheme(
       toolbarHeight: AppDimens.appBarSize,
@@ -33,10 +33,11 @@ class AppTheme {
         color: AppColors.primaryIconColor
       ),
       systemOverlayStyle: const SystemUiOverlayStyle(
-        statusBarColor: AppColors.scaffoldColor,
+        statusBarColor: Colors.transparent,
         statusBarBrightness: Brightness.dark,
         statusBarIconBrightness: Brightness.light,
-        systemNavigationBarColor: AppColors.scaffoldColor,
+        systemNavigationBarColor: Colors.transparent,
+        systemNavigationBarIconBrightness: Brightness.light,
       ),
     ),
     actionIconTheme: ActionIconThemeData(

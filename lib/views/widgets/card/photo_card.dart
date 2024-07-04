@@ -12,11 +12,13 @@ import 'package:uwalls/shared/routes/routes_navigator.dart';
 import 'package:uwalls/shared/themes/dimens.dart';
 import 'package:uwalls/views/widgets/items/photo_item.dart';
 
-class ExploreCard extends StatelessWidget {
+class PhotoCard extends StatelessWidget {
 
+
+  final int action;
   final PhotoModel photo;
 
-  const ExploreCard({super.key, required this.photo});
+  const PhotoCard({super.key, required this.action, required this.photo});
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +30,11 @@ class ExploreCard extends StatelessWidget {
     return Bounce(
       duration: const Duration(milliseconds: 100),
       onPressed: () {
-        if(appvm.fullPreview){
+        if(appvm.fullPreview) {
           appvm.onChangePreview(value: false);
+        }
+        if(action == 20) {
+          FocusScope.of(context).requestFocus(FocusNode());
         }
         AppNavigator.push(route: AppRoutes.detailRoute, argument: {'photo': photo, 'bgcolor': bgColor});
       },
@@ -48,7 +53,7 @@ class ExploreCard extends StatelessWidget {
                 smoothness: AppDimens.smoothnessCorner,
                 child: ImageNetwork(
                   width: double.maxFinite,
-                  url: photo.urls.regular,
+                  url: photo.urls.small,
                 ),
               ),
             ),

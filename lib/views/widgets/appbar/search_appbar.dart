@@ -3,14 +3,12 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:uwalls/controllers/app_controller.dart';
 import 'package:uwalls/shared/interfaces/text.dart';
 import 'package:uwalls/shared/themes/dimens.dart';
 import 'package:uwalls/shared/themes/shortcut.dart';
-import 'package:uwalls/shared/utils/stateid.dart';
 
-class MainAppbar extends StatelessWidget {
-  const MainAppbar({super.key});
+class SearchAppbar extends StatelessWidget {
+  const SearchAppbar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,20 +21,23 @@ class MainAppbar extends StatelessWidget {
         child: AppBar(
           toolbarHeight: Platform.isAndroid ? kToolbarHeight : AppDimens.appBarSize,
           backgroundColor: themeApp.scaffoldBackgroundColor.withOpacity(0.9),
-          title: GetBuilder<AppController>(
-            id: AppStateId.pageIndex,
-            builder: (value) => Row(
-              mainAxisAlignment: centerMainAxis,
-              children: [
-                Headline3Text(
-                  label: value.currentTitle,
-                  textColor: themeApp.primaryColor,
-                ),
-                Headline3Text(
-                  label: value.currentPage == 3 ? 'account' : 'walls'
-                ),
-              ],
-            ),
+          leading: IconButton(
+            onPressed: () => Get.back(), 
+            icon: const Icon(
+              Icons.arrow_back_rounded
+            )
+          ),
+          title: Row(
+            mainAxisSize: minSize,
+            children: [
+              Headline3Text(
+                label: 'search',
+                textColor: themeApp.primaryColor,
+              ),
+              const Headline3Text(
+                label: 'result'
+              ),
+            ],
           ),
           centerTitle: true,
           elevation: 0.0,

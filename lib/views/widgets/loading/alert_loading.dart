@@ -36,6 +36,7 @@ class AlertLoading extends StatelessWidget {
                 CupertinoActivityIndicator(
                   radius: AppDimens.size7,
                   animating: animating ?? true,
+                  color: themeApp.primaryColor,
                 ),
                 AppDimens.gap8,
                 const CaptionText(

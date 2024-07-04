@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:uwalls/shared/interfaces/image.dart';
 import 'package:uwalls/shared/routes/routes.dart';
 import 'package:uwalls/shared/routes/routes_navigator.dart';
@@ -18,6 +19,11 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   void initState() {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitDown,
+      DeviceOrientation.portraitUp,
+    ]);
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
     Future.delayed(const Duration(milliseconds: 1500), () => 
       AppNavigator.pushReplacement(route: AppRoutes.mainRoute)
     );

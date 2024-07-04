@@ -1,5 +1,4 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:smooth_corner/smooth_corner.dart';
@@ -43,6 +42,7 @@ class ImageNetwork extends StatelessWidget {
   final BoxFit? fit;
   final FilterQuality? quality;
   final double? radius;
+  final double? chacheWidth;
 
   const ImageNetwork({
     super.key, 
@@ -52,11 +52,13 @@ class ImageNetwork extends StatelessWidget {
     this.fit,
     this.quality,
     this.radius,
+    this.chacheWidth,
   });
 
   @override
   Widget build(BuildContext context) {
 
+    final mediaApp = MediaQuery.of(context);
     final themeApp = Theme.of(context);
 
     return SmoothClipRRect(
@@ -68,16 +70,14 @@ class ImageNetwork extends StatelessWidget {
         imageUrl: url,
         fit: fit ?? BoxFit.cover,
         filterQuality: quality ?? FilterQuality.medium,
+        memCacheWidth: ((chacheWidth ?? 100) * mediaApp.devicePixelRatio).round(),
         placeholder: (context, url) => Material(
-          color: themeApp.dividerColor,
-          child: const Center(
-            child: CupertinoActivityIndicator(),
-          ),
+          color: themeApp.cardColor,
         ),
         errorWidget: (context, url, error) => Material(
-          color: themeApp.dividerColor,
+          color: themeApp.cardColor,
           child: Icon(
-            IconsaxPlusBold.image,
+            IconsaxPlusBold.gallery_slash,
             color: themeApp.disabledColor,
           ),
         ),

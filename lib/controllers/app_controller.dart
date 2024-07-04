@@ -7,10 +7,10 @@ class AppController extends GetxController {
 
   String currentTitle = 'u';
 
+  bool reversePage = false;
   bool fullPreview = false;
 
   void onChangePage({required page}) {
-    currentPage = page;
     if(page == 0){
       currentTitle = 'search';
     } else if(page == 1) {
@@ -20,6 +20,12 @@ class AppController extends GetxController {
     } else {
       currentTitle = 'my';
     }
+    if(page < currentPage) {
+      reversePage = true;
+    } else {
+      reversePage = false;
+    }
+    currentPage = page;
     update([AppStateId.pageIndex]);
   }
 
