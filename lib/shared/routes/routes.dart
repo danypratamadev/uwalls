@@ -3,6 +3,7 @@ import 'package:uwalls/bindings/explore_binding.dart';
 import 'package:uwalls/views/pages/detail_page.dart';
 import 'package:uwalls/views/pages/login_page.dart';
 import 'package:uwalls/views/pages/main_page.dart';
+import 'package:uwalls/views/pages/photoview_page.dart';
 import 'package:uwalls/views/pages/splash_page.dart';
 
 class AppRoutes {
@@ -11,6 +12,7 @@ class AppRoutes {
   static const loginRoute = '/login';
   static const mainRoute = '/uwalls';
   static const detailRoute = '/uwalls/detail';
+  static const previewRoute = '/uwalls/detail/preview';
 
   static final routes = [
     GetPage(
@@ -31,6 +33,10 @@ class AppRoutes {
     GetPage(
       name: detailRoute, 
       page: () => const DetailPage()
+    ),
+    GetPage(
+      name: previewRoute, 
+      page: () => const PhotoviewPage()
     ),
   ];
 

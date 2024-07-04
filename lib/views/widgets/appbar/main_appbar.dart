@@ -6,6 +6,7 @@ import 'package:uwalls/controllers/app_controller.dart';
 import 'package:uwalls/shared/interfaces/text.dart';
 import 'package:uwalls/shared/themes/dimens.dart';
 import 'package:uwalls/shared/themes/shortcut.dart';
+import 'package:uwalls/shared/utils/stateid.dart';
 
 class MainAppbar extends StatelessWidget {
   const MainAppbar({super.key});
@@ -21,19 +22,20 @@ class MainAppbar extends StatelessWidget {
         child: AppBar(
           toolbarHeight: AppDimens.appBarSize,
           backgroundColor: themeApp.scaffoldBackgroundColor.withOpacity(0.9),
-          title: Row(
-            mainAxisAlignment: centerMainAxis,
-            children: [
-              GetBuilder<AppController>(
-                builder: (value) => Headline2Text(
+          title: GetBuilder<AppController>(
+            id: AppStateId.pageIndex,
+            builder: (value) => Row(
+              mainAxisAlignment: centerMainAxis,
+              children: [
+                Headline2Text(
                   label: value.currentTitle,
                   textColor: themeApp.primaryColor,
                 ),
-              ),
-              const Headline2Text(
-                label: 'walls'
-              ),
-            ],
+                Headline2Text(
+                  label: value.currentPage == 3 ? 'account' : 'walls'
+                ),
+              ],
+            ),
           ),
           centerTitle: true,
           elevation: 0.0,

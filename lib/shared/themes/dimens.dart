@@ -9,6 +9,8 @@ class AppDimens {
   static const double iconButtonSize = 40.0;
   static const double tabHeightSize = 32.0;
 
+  static const double textScaleFactor = 1.0;
+
   static const double primaryFlexibleAppBarSize = 90.0;
   static const double secondaryFlexibleAppBarSize = 80.0;
   static const double tertiaryFlexibleAppBarSize = 70.0;

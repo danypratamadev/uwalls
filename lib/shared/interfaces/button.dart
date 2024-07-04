@@ -57,10 +57,14 @@ class PrimaryButton extends StatelessWidget {
             const CupertinoActivityIndicator(),
             AppDimens.gap8,
             Text(
-              labelLoading ?? 'Loading...'
+              labelLoading ?? 'Loading...',
+              textScaler: const TextScaler.linear(AppDimens.textScaleFactor),
             ),
           ],
-        ) : Text(label),
+        ) : Text(
+          label,
+          textScaler: const TextScaler.linear(AppDimens.textScaleFactor),
+        ),
       ),
     );
   }
@@ -127,24 +131,14 @@ class SecondaryButton extends StatelessWidget {
             const CupertinoActivityIndicator(),
             AppDimens.gap8,
             Text(
-              labelLoading ?? 'Loading...'
+              labelLoading ?? 'Loading...',
+              textScaler: const TextScaler.linear(AppDimens.textScaleFactor),
             ),
           ],
-        ) : Stack(
-          children: [
-            Positioned(
-              left: 0.0,
-              top: 0.0,
-              bottom: 0.0,
-              child: Center(
-                child: leading ?? const SizedBox()
-              ),
-            ),
-            Center(
-              child: Text(label)
-            ),
-          ],
-        ),
+        ) : Text(
+          label,
+          textScaler: const TextScaler.linear(AppDimens.textScaleFactor),
+        )
       ),
     );
   }

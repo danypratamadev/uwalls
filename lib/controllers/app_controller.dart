@@ -1,10 +1,13 @@
 import 'package:get/get.dart';
+import 'package:uwalls/shared/utils/stateid.dart';
 
 class AppController extends GetxController {
 
   int currentPage = 1;
 
   String currentTitle = 'u';
+
+  bool fullPreview = false;
 
   void onChangePage({required page}) {
     currentPage = page;
@@ -17,7 +20,12 @@ class AppController extends GetxController {
     } else {
       currentTitle = 'my';
     }
-    update();
+    update([AppStateId.pageIndex]);
+  }
+
+  void onChangePreview({bool? value}) {
+    fullPreview = value ?? !fullPreview;
+    update([AppStateId.fullPreview]);
   }
 
 }

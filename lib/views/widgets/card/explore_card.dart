@@ -2,7 +2,9 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bounce/flutter_bounce.dart';
+import 'package:get/get.dart';
 import 'package:smooth_corner/smooth_corner.dart';
+import 'package:uwalls/controllers/app_controller.dart';
 import 'package:uwalls/models/photo_model.dart';
 import 'package:uwalls/shared/interfaces/image.dart';
 import 'package:uwalls/shared/routes/routes.dart';
@@ -19,11 +21,18 @@ class ExploreCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    final appvm = Get.find<AppController>();
+
     Color bgColor = Color(int.parse('FF${photo.color.replaceAll('#', '')}', radix: 16)).withOpacity(0.5);
 
     return Bounce(
       duration: const Duration(milliseconds: 100),
-      onPressed: () => AppNavigator.push(route: AppRoutes.detailRoute, argument: {'photo': photo, 'bgcolor': bgColor}),
+      onPressed: () {
+        if(appvm.fullPreview){
+          appvm.onChangePreview(value: false);
+        }
+        AppNavigator.push(route: AppRoutes.detailRoute, argument: {'photo': photo, 'bgcolor': bgColor});
+      },
       child: Stack(
         children: [
           Positioned(

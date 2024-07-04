@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:uwalls/controllers/app_controller.dart';
+import 'package:uwalls/shared/utils/stateid.dart';
 import 'package:uwalls/views/pages/account_page.dart';
 import 'package:uwalls/views/pages/explore_page.dart';
 import 'package:uwalls/views/pages/saved_page.dart';
@@ -22,6 +23,7 @@ class MainPage extends StatelessWidget {
             top: 0.0,
             bottom: 0.0,
             child: GetBuilder<AppController>(
+              id: AppStateId.pageIndex,
               builder: (value) => IndexedStack(
                 index: value.currentPage,
                 children: const [

@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:uwalls/controllers/app_controller.dart';
 import 'package:uwalls/shared/themes/dimens.dart';
+import 'package:uwalls/shared/utils/stateid.dart';
 
 class MainBottomnav extends StatelessWidget {
   const MainBottomnav({super.key});
@@ -20,6 +21,7 @@ class MainBottomnav extends StatelessWidget {
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 50, sigmaY: 50),
         child: GetBuilder<AppController>(
+          id: AppStateId.pageIndex,
           builder: (value) => BottomNavigationBar(
             currentIndex: value.currentPage,
             showSelectedLabels: false,

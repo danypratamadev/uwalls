@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:uwalls/shared/themes/dimens.dart';
 import 'package:uwalls/shared/themes/shortcut.dart';
 
 class ExtraLargeHeadlineText extends StatelessWidget {
@@ -40,6 +41,7 @@ class ExtraLargeHeadlineText extends StatelessWidget {
       textAlign: textAlign ?? startText,
       maxLines: maxLines ?? 2,
       overflow: TextOverflow.ellipsis,
+      textScaler: const TextScaler.linear(AppDimens.textScaleFactor),
       softWrap: true,
     );
   }
@@ -83,6 +85,7 @@ class LargeHeadlineText extends StatelessWidget {
       textAlign: textAlign ?? startText,
       maxLines: maxLines ?? 2,
       overflow: TextOverflow.ellipsis,
+      textScaler: const TextScaler.linear(AppDimens.textScaleFactor),
       softWrap: true,
     );
   }
@@ -128,6 +131,7 @@ class Headline1Text extends StatelessWidget {
       textAlign: textAlign ?? startText,
       maxLines: maxLines ?? 2,
       overflow: TextOverflow.ellipsis,
+      textScaler: const TextScaler.linear(AppDimens.textScaleFactor),
       softWrap: true,
     );
   }
@@ -171,6 +175,7 @@ class Headline2Text extends StatelessWidget {
       textAlign: textAlign ?? startText,
       maxLines: maxLines ?? 2,
       overflow: TextOverflow.ellipsis,
+      textScaler: const TextScaler.linear(AppDimens.textScaleFactor),
       softWrap: true,
     );
   }
@@ -216,6 +221,7 @@ class Headline3Text extends StatelessWidget {
       textAlign: textAlign ?? startText,
       maxLines: maxLines ?? 2,
       overflow: TextOverflow.ellipsis,
+      textScaler: const TextScaler.linear(AppDimens.textScaleFactor),
       softWrap: true,
     );
   }
@@ -259,6 +265,7 @@ class TitleText extends StatelessWidget {
       textAlign: textAlign ?? startText,
       maxLines: maxLines ?? 2,
       overflow: TextOverflow.ellipsis,
+      textScaler: const TextScaler.linear(AppDimens.textScaleFactor),
       softWrap: true,
     );
   }
@@ -302,6 +309,7 @@ class SubtitleText extends StatelessWidget {
       textAlign: textAlign ?? startText,
       maxLines: maxLines ?? 2,
       overflow: TextOverflow.ellipsis,
+      textScaler: const TextScaler.linear(AppDimens.textScaleFactor),
       softWrap: true,
     );
   }
@@ -345,6 +353,7 @@ class BodyText extends StatelessWidget {
       textAlign: textAlign ?? startText,
       maxLines: maxLines ?? 5,
       overflow: TextOverflow.ellipsis,
+      textScaler: const TextScaler.linear(AppDimens.textScaleFactor),
       softWrap: true,
     );
   }
@@ -388,6 +397,7 @@ class CaptionText extends StatelessWidget {
       textAlign: textAlign ?? startText,
       maxLines: maxLines ?? 5,
       overflow: TextOverflow.ellipsis,
+      textScaler: const TextScaler.linear(AppDimens.textScaleFactor),
       softWrap: true,
     );
   }
@@ -431,6 +441,7 @@ class OverlineText extends StatelessWidget {
       textAlign: textAlign ?? startText,
       maxLines: maxLines ?? 5,
       overflow: TextOverflow.ellipsis,
+      textScaler: const TextScaler.linear(AppDimens.textScaleFactor),
       softWrap: true,
     );
   }
