@@ -16,7 +16,7 @@ class PrimaryButton extends StatelessWidget {
   final double? radius;
   final bool loading;
   final String? labelLoading;
-  final GestureTapCallback onPressed;
+  final GestureTapCallback? onPressed;
 
   const PrimaryButton({
     super.key, 
@@ -28,7 +28,7 @@ class PrimaryButton extends StatelessWidget {
     this.radius,
     this.loading = false,
     this.labelLoading,
-    required this.onPressed
+    this.onPressed
   });
 
   @override

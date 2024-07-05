@@ -1,5 +1,11 @@
 class AppStateId {
 
+  static const String obscurePass = 'obscurePass';
+  static const String btnLogin = 'btnLogin';
+  
+  static const String obscurePassReg = 'obscurePassReg';
+  static const String btnRegister = 'btnRegister';
+
   static const String pageIndex = 'pageIndex';
   static const String fullPreview = 'fullPreview';
 

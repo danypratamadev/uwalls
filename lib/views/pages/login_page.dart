@@ -4,9 +4,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:uwalls/shared/interfaces/button.dart';
-import 'package:uwalls/shared/interfaces/card.dart';
 import 'package:uwalls/shared/interfaces/image.dart';
-import 'package:uwalls/shared/interfaces/input.dart';
 import 'package:uwalls/shared/interfaces/other.dart';
 import 'package:uwalls/shared/interfaces/text.dart';
 import 'package:uwalls/shared/routes/routes.dart';
@@ -14,6 +12,7 @@ import 'package:uwalls/shared/routes/routes_navigator.dart';
 import 'package:uwalls/shared/themes/dimens.dart';
 import 'package:uwalls/shared/themes/shortcut.dart';
 import 'package:uwalls/shared/utils/images.dart';
+import 'package:uwalls/views/widgets/form/login_form.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -49,37 +48,7 @@ class LoginPage extends StatelessWidget {
                 ),
               ),
               AppDimens.gap20,
-              const Headline1Text(
-                label: 'Welcome to uwalls'
-              ),
-              AppDimens.gap3,
-              const BodyText(
-                label: 'Explore and download your favorite wallpapers'
-              ),
-              AppDimens.gap32,
-              const RoundedCard(
-                padding: EdgeInsets.zero,
-                child: Column(
-                  children: [
-                    CleanTextInput(
-                      hintText: 'Email',
-                      inputType: TextInputType.emailAddress,
-                    ),
-                    AppHorizontalDivider(),
-                    CleanTextInput(
-                      hintText: 'Password',
-                      obscureText: true,
-                    ),
-                  ],
-                ),
-              ),
-              AppDimens.gap32,
-              PrimaryButton(
-                label: 'Sign In', 
-                onPressed: () {
-                  
-                },
-              ),
+              const LoginForm(),
               AppDimens.gap32,
               Text.rich(
                 textAlign: centerText,

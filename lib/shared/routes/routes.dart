@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:uwalls/bindings/auth_binding.dart';
 import 'package:uwalls/bindings/unsplash_binding.dart';
 import 'package:uwalls/views/pages/detail_page.dart';
 import 'package:uwalls/views/pages/login_page.dart';
@@ -21,7 +22,8 @@ class AppRoutes {
   static final routes = [
     GetPage(
       name: rootRoute, 
-      page: () => const SplashPage()
+      page: () => const SplashPage(),
+      binding: AuthBinding(),
     ),
     GetPage(
       name: loginRoute, 
@@ -34,9 +36,7 @@ class AppRoutes {
     GetPage(
       name: mainRoute, 
       page: () => const MainPage(),
-      bindings: [
-        UnsplashBinding()
-      ]
+      binding: UnsplashBinding()
     ),
     GetPage(
       name: searchRoute, 

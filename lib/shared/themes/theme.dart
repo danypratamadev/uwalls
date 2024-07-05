@@ -84,7 +84,7 @@ class AppTheme {
       style: ElevatedButton.styleFrom(
         backgroundColor: AppColors.primaryColor,
         foregroundColor: AppColors.scaffoldColor,
-        disabledBackgroundColor: AppColors.dividerColor,
+        disabledBackgroundColor: AppColors.backgroundColor,
         disabledForegroundColor: AppColors.tertiaryTextColor,
         shape: SmoothRectangleBorder(
           borderRadius: BorderRadius.circular(AppDimens.tertiaryRoundedButtonSize),
