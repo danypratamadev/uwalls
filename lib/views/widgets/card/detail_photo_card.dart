@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
-import 'package:intl/intl.dart';
 import 'package:smooth_corner/smooth_corner.dart';
 import 'package:uwalls/controllers/app_controller.dart';
 import 'package:uwalls/models/photo_model.dart';
@@ -97,7 +96,7 @@ class DetailPhotoCard extends StatelessWidget {
                               AppIconButton(
                                 icon: IconsaxPlusBold.heart, 
                                 bgColor: bgColor,
-                                iconColor: displayColor,
+                                iconColor: displayColor.withOpacity(0.6),
                                 onPressed: () => AppNavigator.push(
                                   route: AppRoutes.previewRoute,
                                   argument: {
@@ -110,7 +109,7 @@ class DetailPhotoCard extends StatelessWidget {
                               AppIconButton(
                                 icon: IconsaxPlusBold.archive_1, 
                                 bgColor: bgColor,
-                                iconColor: displayColor,
+                                iconColor: displayColor.withOpacity(0.6),
                                 onPressed: () => AppNavigator.push(
                                   route: AppRoutes.previewRoute,
                                   argument: {
@@ -162,21 +161,20 @@ class DetailPhotoCard extends StatelessWidget {
                       ],
                     ),
                     AppDimens.gap24,
-                    SecondaryButton(
+                    PrimaryButton(
                       label: 'Download', 
                       btnColor: displayColor,
-                      borderColor: Colors.white12,
                       textColor: bgColor.computeLuminance() < 0.5 ? themeApp.scaffoldBackgroundColor : AppColors.whiteTextColor,
                       onPressed: () {
                         
                       },
                     ),
-                    AppDimens.gap16,
-                    CaptionText(
-                      label: 'Published on ${DateFormat('MMMM dd, yyyy').format(photo.created)}',
-                      textColor: displayColor.withOpacity(0.7),
-                      textAlign: centerText,
-                    ),
+                    // AppDimens.gap20,
+                    // CaptionText(
+                    //   label: 'Published on ${DateFormat('MMMM dd, yyyy').format(photo.created)}',
+                    //   textColor: displayColor.withOpacity(0.7),
+                    //   textAlign: centerText,
+                    // ),
                   ],
                 ),
               ),

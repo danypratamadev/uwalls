@@ -9,7 +9,7 @@ import 'package:uwalls/shared/themes/shortcut.dart';
 class AppTheme {
   
   static ThemeData appTheme = ThemeData(
-    fontFamily: GoogleFonts.interTight().fontFamily,
+    fontFamily: GoogleFonts.poppins().fontFamily,
     brightness: Brightness.dark,
     scaffoldBackgroundColor: AppColors.scaffoldColor,
     colorScheme: ColorScheme.fromSwatch(
@@ -83,17 +83,15 @@ class AppTheme {
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         backgroundColor: AppColors.primaryColor,
-        foregroundColor: AppColors.whiteTextColor,
+        foregroundColor: AppColors.scaffoldColor,
         disabledBackgroundColor: AppColors.dividerColor,
         disabledForegroundColor: AppColors.tertiaryTextColor,
         shape: SmoothRectangleBorder(
           borderRadius: BorderRadius.circular(AppDimens.tertiaryRoundedButtonSize),
           smoothness: AppDimens.smoothnessCorner,
         ),
-        textStyle: GoogleFonts.interTight(
+        textStyle: GoogleFonts.poppins(
           fontWeight: fontSemiBold,
-          letterSpacing: 0.35,
-          height: 1.3,
         ),
         elevation: 0.0,
         shadowColor: Colors.transparent,
@@ -114,15 +112,11 @@ class AppTheme {
       ),
       selectedItemColor: AppColors.primaryColor,
       unselectedItemColor: AppColors.secondaryTextColor,
-      selectedLabelStyle: GoogleFonts.interTight(
+      selectedLabelStyle: GoogleFonts.poppins(
         fontWeight: fontMedium,
-        letterSpacing: 0.35,
-        height: 1.3,
       ),
-      unselectedLabelStyle: GoogleFonts.interTight(
+      unselectedLabelStyle: GoogleFonts.poppins(
         fontWeight: fontMedium,
-        letterSpacing: 0.35,
-        height: 1.3,
       ),
       elevation: 0.0,
     ),

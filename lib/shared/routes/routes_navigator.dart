@@ -13,5 +13,9 @@ class AppNavigator {
   static void pushRemoveAll({required String route, Map<String, dynamic>? argument}){
     Get.offAllNamed(route, arguments: argument);
   }
+  
+  static void back({bool? closeOverlay}){
+    Get.back(closeOverlays: closeOverlay ?? false);
+  }
 
 }

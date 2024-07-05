@@ -63,7 +63,10 @@ class CleanTextInput extends StatelessWidget {
         onChanged: onChange,
         onFieldSubmitted: onSubmit,
         decoration: InputDecoration(
-          contentPadding: contentPadding ?? const EdgeInsets.all(AppDimens.secondaryPaddingSize),
+          contentPadding: contentPadding ?? const EdgeInsets.symmetric(
+            horizontal: AppDimens.primaryPaddingSize,
+            vertical: AppDimens.secondaryPaddingSize
+          ),
           hintText: hintText,
           border: InputBorder.none,
           isDense: true,

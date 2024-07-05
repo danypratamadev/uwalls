@@ -2,8 +2,8 @@ import 'dart:io';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:uwalls/shared/interfaces/text.dart';
+import 'package:uwalls/shared/routes/routes_navigator.dart';
 import 'package:uwalls/shared/themes/dimens.dart';
 import 'package:uwalls/shared/themes/shortcut.dart';
 
@@ -22,7 +22,7 @@ class SearchAppbar extends StatelessWidget {
           toolbarHeight: Platform.isAndroid ? kToolbarHeight : AppDimens.appBarSize,
           backgroundColor: themeApp.scaffoldBackgroundColor.withOpacity(0.9),
           leading: IconButton(
-            onPressed: () => Get.back(), 
+            onPressed: () => AppNavigator.back(), 
             icon: const Icon(
               Icons.arrow_back_rounded
             )

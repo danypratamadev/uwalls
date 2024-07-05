@@ -4,6 +4,7 @@ import 'package:uwalls/views/pages/detail_page.dart';
 import 'package:uwalls/views/pages/login_page.dart';
 import 'package:uwalls/views/pages/main_page.dart';
 import 'package:uwalls/views/pages/photoview_page.dart';
+import 'package:uwalls/views/pages/register_page.dart';
 import 'package:uwalls/views/pages/search_result_page.dart';
 import 'package:uwalls/views/pages/splash_page.dart';
 
@@ -11,6 +12,7 @@ class AppRoutes {
 
   static const rootRoute = '/';
   static const loginRoute = '/login';
+  static const registerRoute = '/register';
   static const mainRoute = '/uwalls';
   static const searchRoute = '/uwalls/search';
   static const detailRoute = '/uwalls/detail';
@@ -24,6 +26,10 @@ class AppRoutes {
     GetPage(
       name: loginRoute, 
       page: () => const LoginPage()
+    ),
+    GetPage(
+      name: registerRoute, 
+      page: () => const RegisterPage()
     ),
     GetPage(
       name: mainRoute, 

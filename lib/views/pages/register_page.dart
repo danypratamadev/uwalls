@@ -9,14 +9,13 @@ import 'package:uwalls/shared/interfaces/image.dart';
 import 'package:uwalls/shared/interfaces/input.dart';
 import 'package:uwalls/shared/interfaces/other.dart';
 import 'package:uwalls/shared/interfaces/text.dart';
-import 'package:uwalls/shared/routes/routes.dart';
 import 'package:uwalls/shared/routes/routes_navigator.dart';
 import 'package:uwalls/shared/themes/dimens.dart';
 import 'package:uwalls/shared/themes/shortcut.dart';
 import 'package:uwalls/shared/utils/images.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+class RegisterPage extends StatelessWidget {
+  const RegisterPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -48,13 +47,13 @@ class LoginPage extends StatelessWidget {
                   width: mediaApp.size.width * 0.5,
                 ),
               ),
-              AppDimens.gap20,
               const Headline1Text(
-                label: 'Welcome to uwalls'
+                label: 'Register Account'
               ),
               AppDimens.gap3,
               const BodyText(
-                label: 'Explore and download your favorite wallpapers'
+                label: 'Join with us to explore and download your favorite wallpapers',
+                textAlign: centerText,
               ),
               AppDimens.gap32,
               const RoundedCard(
@@ -62,12 +61,35 @@ class LoginPage extends StatelessWidget {
                 child: Column(
                   children: [
                     CleanTextInput(
-                      hintText: 'Email',
-                      inputType: TextInputType.emailAddress,
+                      hintText: 'First name',
                     ),
                     AppHorizontalDivider(),
                     CleanTextInput(
-                      hintText: 'Password',
+                      hintText: 'Last name',
+                    ),
+                  ],
+                ),
+              ),
+              AppDimens.gap20,
+              const RoundedCard(
+                padding: EdgeInsets.zero,
+                child: CleanTextInput(
+                  hintText: 'Email address',
+                  inputType: TextInputType.emailAddress,
+                ),
+              ),
+              AppDimens.gap20,
+              const RoundedCard(
+                padding: EdgeInsets.zero,
+                child: Column(
+                  children: [
+                    CleanTextInput(
+                      hintText: 'Create password',
+                      obscureText: true,
+                    ),
+                    AppHorizontalDivider(),
+                    CleanTextInput(
+                      hintText: 'Confirm password',
                       obscureText: true,
                     ),
                   ],
@@ -75,7 +97,7 @@ class LoginPage extends StatelessWidget {
               ),
               AppDimens.gap32,
               PrimaryButton(
-                label: 'Sign In', 
+                label: 'Register Now', 
                 onPressed: () {
                   
                 },
@@ -84,14 +106,14 @@ class LoginPage extends StatelessWidget {
               Text.rich(
                 textAlign: centerText,
                 TextSpan(
-                  text: "Don't have an account? ",
+                  text: 'Already have an account? ',
                   style: GoogleFonts.poppins(
                     textStyle: themeApp.textTheme.labelLarge,
                     fontWeight: fontRegular,
                   ),
                   children: <InlineSpan>[
                     TextSpan(
-                      text: 'Sign Up',
+                      text: 'Sign In',
                       style: GoogleFonts.poppins(
                         textStyle: themeApp.textTheme.labelLarge,
                         color: themeApp.primaryColor,
@@ -99,36 +121,13 @@ class LoginPage extends StatelessWidget {
                       ),
                       recognizer: TapGestureRecognizer()..onTap = () {
                         FocusScope.of(context).requestFocus(FocusNode());
-                        AppNavigator.push(route: AppRoutes.registerRoute);
+                        AppNavigator.back();
                       },
                     ),
                   ]
                 ),
               ),
-              AppDimens.gap32,
-              const Row(
-                children: [
-                  Expanded(
-                    child: AppHorizontalDivider()
-                  ),
-                  AppDimens.gap12,
-                  CaptionText(label: 'OR'),
-                  AppDimens.gap12,
-                  Expanded(
-                    child: AppHorizontalDivider()
-                  ),
-                ],
-              ),
-              AppDimens.gap32,
-              SecondaryButton(
-                label: 'Google', 
-                btnColor: themeApp.cardColor,
-                borderColor: themeApp.cardColor,
-                onPressed: () {
-                  
-                },
-              )
-            ],
+            ]
           ),
         ),
       ),

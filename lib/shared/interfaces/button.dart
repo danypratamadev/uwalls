@@ -46,7 +46,7 @@ class PrimaryButton extends StatelessWidget {
           foregroundColor: WidgetStatePropertyAll(textColor),
           shape: WidgetStatePropertyAll(
             SmoothRectangleBorder(
-              borderRadius: BorderRadius.circular(radius ?? AppDimens.buttonHeightSize),
+              borderRadius: BorderRadius.circular(radius ?? AppDimens.quaternaryRoundedButtonSize),
               smoothness: AppDimens.smoothnessCorner,
             ),
           )
@@ -116,7 +116,7 @@ class SecondaryButton extends StatelessWidget {
             const WidgetStatePropertyAll(AppColors.tertiaryTextColor),
           shape: WidgetStatePropertyAll(
             SmoothRectangleBorder(
-              borderRadius: BorderRadius.circular(radius ?? AppDimens.buttonHeightSize),
+              borderRadius: BorderRadius.circular(radius ?? AppDimens.quaternaryRoundedButtonSize),
               smoothness: AppDimens.smoothnessCorner,
               side: BorderSide(
                 width: AppDimens.primaryDividerSize,

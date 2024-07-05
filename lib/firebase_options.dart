@@ -64,6 +64,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '17404392645',
     projectId: 'uwalls-caa87',
     storageBucket: 'uwalls-caa87.appspot.com',
+    iosClientId: '17404392645-hpiuneai66sgfcoaqupeicnejd23gncc.apps.googleusercontent.com',
     iosBundleId: 'com.dany.dev.uwalls',
   );
 
@@ -73,6 +74,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '17404392645',
     projectId: 'uwalls-caa87',
     storageBucket: 'uwalls-caa87.appspot.com',
+    iosClientId: '17404392645-hpiuneai66sgfcoaqupeicnejd23gncc.apps.googleusercontent.com',
     iosBundleId: 'com.dany.dev.uwalls',
   );
 
@@ -85,4 +87,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'uwalls-caa87.appspot.com',
     measurementId: 'G-8SJVXCQX2S',
   );
+
 }

@@ -50,6 +50,7 @@ class SearchResultPage extends StatelessWidget {
                     Headline1Text(
                       label: toBeginningOfSentenceCase(query)
                     ),
+                    AppDimens.gap5,
                     GetBuilder<UnsplashController>(
                       id: AppStateId.search,
                       builder: (value) => CaptionText(

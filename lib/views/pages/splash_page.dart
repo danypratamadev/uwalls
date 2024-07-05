@@ -25,7 +25,7 @@ class _SplashPageState extends State<SplashPage> {
     ]);
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
     Future.delayed(const Duration(milliseconds: 1500), () => 
-      AppNavigator.pushReplacement(route: AppRoutes.mainRoute)
+      AppNavigator.pushReplacement(route: AppRoutes.loginRoute)
     );
     super.initState();
   }
