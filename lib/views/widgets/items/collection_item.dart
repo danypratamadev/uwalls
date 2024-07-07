@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:uwalls/models/photo_model.dart';
+import 'package:uwalls/models/collection_model.dart';
 import 'package:uwalls/shared/interfaces/other.dart';
 import 'package:uwalls/shared/interfaces/text.dart';
 import 'package:uwalls/shared/themes/colors.dart';
 import 'package:uwalls/shared/themes/dimens.dart';
 import 'package:uwalls/shared/themes/shortcut.dart';
 
-class PhotoItem extends StatelessWidget {
+class CollectionItem extends StatelessWidget {
 
-  final int action;
-  final PhotoModel photo;
+  final CollectionModel collection;
   final Color bgColor;
 
-  const PhotoItem({super.key, required this.action, required this.photo, required this.bgColor});
+  const CollectionItem({super.key, required this.collection, required this.bgColor});
 
   @override
   Widget build(BuildContext context) {
@@ -23,10 +22,10 @@ class PhotoItem extends StatelessWidget {
 
     return SizedBox(
       width: double.maxFinite,
-      height: AppDimens.size54,
+      height: AppDimens.size65,
       child: Padding(
         padding: const EdgeInsets.symmetric(
-          horizontal: AppDimens.quaternaryPaddingSize,
+          horizontal: AppDimens.primaryPaddingSize,
           vertical: AppDimens.quinaryPaddingSize
         ),
         child: Column(
@@ -34,10 +33,10 @@ class PhotoItem extends StatelessWidget {
           mainAxisAlignment: centerMainAxis,
           children: [
             Hero(
-              tag: '${photo.id}@title@$action',
+              tag: '${collection.id}@title',
               transitionOnUserGestures: true,
-              child: CaptionText(
-                label: photo.altDescription,
+              child: SubtitleText(
+                label: collection.title,
                 fontWeight: fontMedium,
                 textColor: displayColor,
                 maxLines: 1,
@@ -45,19 +44,19 @@ class PhotoItem extends StatelessWidget {
             ),
             AppDimens.gap2,
             Hero(
-              tag: '${photo.id}@caption@$action',
+              tag: '${collection.id}@caption',
               transitionOnUserGestures: true,
               child: Row(
                 children: [
                   OverlineText(
-                    label: '${photo.likes} likes',
+                    label: collection.user.username,
                     textColor: displayColor.withOpacity(0.7),
                     maxLines: 1,
                   ),
                   DotSeparated(color: displayColor.withOpacity(0.3),),
                   Flexible(
                     child: OverlineText(
-                      label: photo.user.username,
+                      label: '${collection.totalPhoto} wallpapers',
                       textColor: displayColor.withOpacity(0.7),
                       maxLines: 1,
                     ),

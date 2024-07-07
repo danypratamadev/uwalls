@@ -5,5 +5,6 @@ class ApiEndPoints {
   static const String photos = 'photos';
   static const String ramdomPhotos = 'photos/random';
   static const String searchPhotos = 'search/photos';
+  static const String collection = 'collections';
 
 }

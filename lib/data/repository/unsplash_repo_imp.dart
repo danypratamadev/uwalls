@@ -6,6 +6,7 @@ import 'package:uwalls/data/endpoint/api_end_points.dart';
 import 'package:uwalls/data/repository/unsplash_repo.dart';
 import 'package:uwalls/data/services/base_api_service.dart';
 import 'package:uwalls/data/services/unsplash_api_service.dart';
+import 'package:uwalls/models/collection_model.dart';
 import 'package:uwalls/models/photo_model.dart';
 
 class UnsplashRepoImp implements UnsplashRepo {
@@ -83,6 +84,29 @@ class UnsplashRepoImp implements UnsplashRepo {
       int totalPhoto = response['total'] ?? 1;
       int totalPage = response['total_pages'] ?? 1;
       return Tuple3(result, totalPhoto, totalPage);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<List<CollectionModel>?> getCollection({required int page}) async {
+    try {
+      dynamic response = await apiService.getResponse(
+        url: ApiEndPoints.collection,
+        header: {
+          'Accept': 'application/json',
+        },
+        params: {
+          'client_id': ApiEndPoints.keyAccess,
+          'page': page,
+          'per_page': 5,
+        }
+      );
+      log('COLLECTIONS => ${response.toString()}');
+      List<CollectionModel> result = List<CollectionModel>.from(response.map((data) => 
+        CollectionModel.fromJson(json: data)));
+      return result;
     } catch (e) {
       rethrow;
     }

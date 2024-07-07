@@ -2,40 +2,27 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bounce/flutter_bounce.dart';
-import 'package:get/get.dart';
 import 'package:smooth_corner/smooth_corner.dart';
-import 'package:uwalls/controllers/app_controller.dart';
-import 'package:uwalls/models/photo_model.dart';
+import 'package:uwalls/models/collection_model.dart';
 import 'package:uwalls/shared/interfaces/image.dart';
-import 'package:uwalls/shared/routes/routes.dart';
-import 'package:uwalls/shared/routes/routes_navigator.dart';
 import 'package:uwalls/shared/themes/dimens.dart';
-import 'package:uwalls/views/widgets/items/photo_item.dart';
+import 'package:uwalls/views/widgets/items/collection_item.dart';
 
-class PhotoCard extends StatelessWidget {
+class CollectionCard extends StatelessWidget {
 
-  final int action;
-  final PhotoModel photo;
+  final CollectionModel collection;
 
-  const PhotoCard({super.key, required this.action, required this.photo});
+  const CollectionCard({super.key, required this.collection});
 
   @override
   Widget build(BuildContext context) {
 
-    final appvm = Get.find<AppController>();
-
-    Color bgColor = Color(int.parse('FF${photo.color.replaceAll('#', '')}', radix: 16));
+    Color bgColor = Color(int.parse('FF${collection.cover.color.replaceAll('#', '')}', radix: 16));
 
     return Bounce(
       duration: const Duration(milliseconds: 100),
       onPressed: () {
-        if(appvm.fullPreview) {
-          appvm.onChangePreview(value: false);
-        }
-        if(action == 20) {
-          FocusScope.of(context).requestFocus(FocusNode());
-        }
-        AppNavigator.push(route: AppRoutes.detailRoute, argument: {'action': action, 'photo': photo, 'bgcolor': bgColor});
+
       },
       child: Stack(
         children: [
@@ -45,14 +32,15 @@ class PhotoCard extends StatelessWidget {
             top: 0.0,
             bottom: 0.0,
             child: Hero(
-              tag: '${photo.id}@$action',
+              tag: collection.id,
               transitionOnUserGestures: true,
               child: SmoothClipRRect(
                 borderRadius: BorderRadius.circular(AppDimens.quaternaryRoundedCardSize),
                 smoothness: AppDimens.smoothnessCorner,
                 child: ImageNetwork(
                   width: double.maxFinite,
-                  url: photo.urls.small,
+                  url: collection.cover.urls.small,
+                  chacheWidth: AppDimens.size100,
                 ),
               ),
             ),
@@ -62,7 +50,7 @@ class PhotoCard extends StatelessWidget {
             right: 0.0,
             bottom: 0.0,
             child: Hero(
-              tag: '${photo.id}@bg@$action',
+              tag: '${collection.id}@bg',
               transitionOnUserGestures: true,
               child: SmoothClipRRect(
                 borderRadius: const BorderRadius.only(
@@ -76,7 +64,7 @@ class PhotoCard extends StatelessWidget {
                     color: bgColor.withOpacity(0.5),
                     child: const SizedBox(
                       width: double.maxFinite,
-                      height: AppDimens.size54,
+                      height: AppDimens.size65,
                     ),
                   ),
                 ),
@@ -87,7 +75,7 @@ class PhotoCard extends StatelessWidget {
             left: 0.0,
             right: 0.0,
             bottom: 0.0,
-            child: PhotoItem(action: action, photo: photo, bgColor: bgColor)
+            child: CollectionItem(collection: collection, bgColor: bgColor)
           )
         ],
       ),

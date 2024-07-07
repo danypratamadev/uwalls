@@ -20,4 +20,7 @@ class AppStateId {
   static const String saved = 'saved';
   static const String liked = 'liked';
 
+  static const String collection = 'collection';
+  static const String regetCollection = 'regetCollection';
+
 }

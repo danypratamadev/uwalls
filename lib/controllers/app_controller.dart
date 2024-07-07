@@ -5,7 +5,7 @@ class AppController extends GetxController {
 
   int currentPage = 1;
 
-  String currentTitle = 'u';
+  String currentTitle = 'explore';
 
   bool reversePage = false;
   bool fullPreview = false;
@@ -14,9 +14,9 @@ class AppController extends GetxController {
     if(page == 0){
       currentTitle = 'search';
     } else if(page == 1) {
-      currentTitle = 'u';
+      currentTitle = 'explore';
     } else if(page == 2) {
-      currentTitle = 'saved';
+      currentTitle = 'collection';
     } else {
       currentTitle = 'my';
     }

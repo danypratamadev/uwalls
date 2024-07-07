@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:uwalls/models/photo_model.dart';
+import 'package:uwalls/shared/interfaces/dialog.dart';
 import 'package:uwalls/shared/utils/stateid.dart';
 
 class FirestoreController extends GetxController {
@@ -50,7 +52,7 @@ class FirestoreController extends GetxController {
     return find.isNotEmpty ? true : false;
   }
 
-  void addToSavedPhotos({required PhotoModel photo}) async {
+  void addToSavedPhotos({required PhotoModel photo, required Color displayColor, required Color bgColor}) async {
     String savedReferences = '$userReferences/saved/${photo.id}';
     bool saved = checkSavedPhoto(id: photo.id);
     if(!saved){
@@ -58,6 +60,13 @@ class FirestoreController extends GetxController {
       await firestore.doc(savedReferences).set(photo.toJson()).then((value) {
         listSaved.insert(0,photo);
       });
+      AppDialog.snackbar(
+        title: 'Wallpaper saved', 
+        message:'Success add wallpaper to saved gallery',
+        bgColor: bgColor.withOpacity(0.7),
+        textColor: displayColor,
+        barBlur: 20.0
+      );
     } else {
        await firestore.doc(savedReferences).delete().then((value) {
         listSaved.remove(photo);
@@ -81,12 +90,26 @@ class FirestoreController extends GetxController {
     return find.isNotEmpty ? true : false;
   }
 
-  void addToLikedPhotos({required PhotoModel photo}) async {
+  void addToLikedPhotos({required PhotoModel photo, required Color displayColor, required Color bgColor}) async {
     String likedReferences = '$userReferences/liked/${photo.id}';
-    photo.liked = DateTime.now();
-    await firestore.doc(likedReferences).set(photo.toJson()).then((value) {
-      listLiked.insert(0,photo);
-    });
+    bool saved = checkLikedPhoto(id: photo.id);
+    if(!saved){
+      photo.liked = DateTime.now();
+      await firestore.doc(likedReferences).set(photo.toJson()).then((value) {
+        listLiked.insert(0,photo);
+      });
+      AppDialog.snackbar(
+        title: 'Liked Wallpaper', 
+        message: 'Thanks for liking this wallpaper',
+        bgColor: bgColor.withOpacity(0.7),
+        textColor: displayColor,
+        barBlur: 20.0
+      );
+    } else {
+      await firestore.doc(likedReferences).delete().then((value) {
+        listLiked.remove(photo);
+       });
+    }
     update([AppStateId.liked]);
   }
   

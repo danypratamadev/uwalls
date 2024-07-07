@@ -34,7 +34,7 @@ class ImageAsset extends StatelessWidget {
       height: height,
       fit: fit ?? BoxFit.cover,
       filterQuality: quality ?? FilterQuality.medium,
-      cacheWidth: ((chacheWidth ?? 72) * mediaApp.devicePixelRatio).round(),
+      cacheWidth: ((chacheWidth ?? AppDimens.size72) * mediaApp.devicePixelRatio).round(),
     );
   }
   
@@ -76,7 +76,7 @@ class ImageNetwork extends StatelessWidget {
         imageUrl: url,
         fit: fit ?? BoxFit.cover,
         filterQuality: quality ?? FilterQuality.medium,
-        memCacheWidth: ((chacheWidth ?? 72) * mediaApp.devicePixelRatio).round(),
+        memCacheWidth: ((chacheWidth ?? AppDimens.size72) * mediaApp.devicePixelRatio).round(),
         placeholder: (context, url) => Material(
           color: themeApp.cardColor,
         ),

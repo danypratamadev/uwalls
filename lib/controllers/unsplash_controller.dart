@@ -4,6 +4,7 @@ import 'package:tuple/tuple.dart';
 import 'package:uwalls/data/endpoint/api_response.dart';
 import 'package:uwalls/data/endpoint/api_status.dart';
 import 'package:uwalls/data/repository/unsplash_repo_imp.dart';
+import 'package:uwalls/models/collection_model.dart';
 import 'package:uwalls/models/photo_model.dart';
 import 'package:uwalls/shared/routes/routes.dart';
 import 'package:uwalls/shared/routes/routes_navigator.dart';
@@ -16,8 +17,9 @@ class UnsplashController extends GetxController {
   @override
   void onReady() {
     super.onReady();
-    fetchExlopre();
+    fetchExplore();
     fetchRecomendation();
+    fetchCollection();
   }
 
   //! EXPLORE PHOTOS
@@ -34,7 +36,7 @@ class UnsplashController extends GetxController {
   bool regetLoading = false;
 
   //? METHOD
-  void fetchExlopre() async {
+  void fetchExplore() async {
     await unsplashRepo.getExplore(page: currentPage).then((value) => 
       setExploreValue(res: ApiResponse.complete(data: value)))
       .onError((e, stackTrace) => setExploreValue(res: ApiResponse.error(message: e.toString())));
@@ -68,7 +70,7 @@ class UnsplashController extends GetxController {
         currentPage += 1;
         regetExplore = true;
         regetLoading = true;
-        Future.delayed(const Duration(milliseconds: 500), () => fetchExlopre());
+        Future.delayed(const Duration(milliseconds: 500), () => fetchExplore());
         update([AppStateId.regetExplore]);
       }
     });
@@ -169,6 +171,60 @@ class UnsplashController extends GetxController {
           Future.delayed(const Duration(milliseconds: 500), () => fetchSearch());
           update([AppStateId.regetSearch]);
         }
+      }
+    });
+  }
+
+  //! COLLECTION PHOTOS
+  //? VARIABLE
+  int currentCollPage = 1;
+
+  ApiStatus collectionStatus = ApiStatus.loading;
+  List<CollectionModel> listCollection = <CollectionModel>[];
+
+  ScrollController collectionController = ScrollController();
+
+  bool setupListenColl = false;
+  bool regetCollection = false;
+  bool regetLoadingColl = false;
+
+  //? METHOD
+  void fetchCollection() async {
+    await unsplashRepo.getCollection(page: currentCollPage).then((value) => 
+      setCollectionValue(res: ApiResponse.complete(data: value)))
+      .onError((e, stackTrace) => setCollectionValue(res: ApiResponse.error(message: e.toString())));
+  }
+
+  void setCollectionValue({required ApiResponse<List<CollectionModel>> res}) {
+    collectionStatus = res.status!;
+    if(res.status == ApiStatus.complete) {
+      if(regetCollection){
+        listCollection.addAll(res.data!);
+        listCollection = listCollection.toSet().toList();
+        regetCollection = false;
+        regetLoadingColl = false;
+        update([AppStateId.collection, AppStateId.regetCollection]);
+      } else {
+        listCollection = res.data!;
+        update([AppStateId.collection]);
+      }
+      if(!setupListenColl){
+        listenCollectionController();
+      }
+    }
+  }
+
+  void listenCollectionController() {
+    setupListenColl = true;
+    collectionController.addListener(() {
+      double pixels = collectionController.position.pixels;
+      double maxScroll = collectionController.position.maxScrollExtent;
+      if(pixels == maxScroll && !regetCollection) {
+        currentCollPage += 1;
+        regetCollection = true;
+        regetLoadingColl = true;
+        Future.delayed(const Duration(milliseconds: 500), () => fetchCollection());
+        update([AppStateId.regetCollection]);
       }
     });
   }

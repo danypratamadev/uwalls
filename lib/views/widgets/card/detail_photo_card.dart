@@ -53,7 +53,7 @@ class DetailPhotoCard extends StatelessWidget {
             child: BackdropFilter(
               filter: ImageFilter.blur(sigmaX: 50, sigmaY: 50),
               child: Material(
-                color: bgColor,
+                color: bgColor.withOpacity(0.5),
                 child: ListView(
                   shrinkWrap: true,
                   padding: EdgeInsets.only(
@@ -182,9 +182,13 @@ class DetailUserAction extends StatelessWidget {
                 builder: (value) => AppIconButton(
                   icon: firestorevm.checkLikedPhoto(id: photo.id) ? IconsaxPlusBold.heart : 
                     IconsaxPlusLinear.heart, 
-                  bgColor: bgColor,
+                  bgColor: bgColor.withOpacity(0.5),
                   iconColor: displayColor.withOpacity(0.6),
-                  onPressed: () => firestorevm.addToLikedPhotos(photo: photo)
+                  onPressed: () => firestorevm.addToLikedPhotos(
+                    photo: photo, 
+                    displayColor: displayColor, 
+                    bgColor: bgColor
+                  )
                 ),
               ),
               AppDimens.gap10,
@@ -193,9 +197,13 @@ class DetailUserAction extends StatelessWidget {
                 builder: (value) => AppIconButton(
                   icon: firestorevm.checkSavedPhoto(id: photo.id) ? IconsaxPlusBold.archive_tick : 
                     IconsaxPlusLinear.archive_add, 
-                  bgColor: bgColor,
+                  bgColor: bgColor.withOpacity(0.5),
                   iconColor: displayColor.withOpacity(0.6),
-                  onPressed: () => firestorevm.addToSavedPhotos(photo: photo)
+                  onPressed: () => firestorevm.addToSavedPhotos(
+                    photo: photo, 
+                    displayColor: displayColor,
+                    bgColor: bgColor
+                  )
                 ),
               ),
             ],

@@ -44,7 +44,7 @@ class MainBottomnav extends StatelessWidget {
               ),
               BottomNavigationBarItem(
                 icon: Icon(
-                  IconsaxPlusBold.archive_1
+                  IconsaxPlusBold.layer
                 ),
                 label: 'Saved'
               ),
