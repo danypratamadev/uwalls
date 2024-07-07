@@ -34,9 +34,14 @@ class _SplashPageState extends State<SplashPage> {
       body: Stack(
         children: [
           Center(
-            child: ImageAsset(
-              width: mediaApp.size.width * 0.5,
-              src: iconUwalls
+            child: Hero(
+              tag: 'logo',
+              transitionOnUserGestures: true,
+              child: ImageAsset(
+                src: iconUwalls,
+                width: mediaApp.size.width * 0.4,
+                height: mediaApp.size.width * 0.4,
+              ),
             ),
           ),
           Positioned(

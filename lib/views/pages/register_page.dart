@@ -40,7 +40,8 @@ class RegisterPage extends StatelessWidget {
                 transitionOnUserGestures: true,
                 child: ImageAsset(
                   src: logoUwalls,
-                  width: mediaApp.size.width * 0.5,
+                  width: mediaApp.size.width * 0.4,
+                  height: mediaApp.size.width * 0.4,
                 ),
               ),
               AppDimens.gap20,

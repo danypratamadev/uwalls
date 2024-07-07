@@ -2,7 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:uwalls/controllers/auth_controller.dart';
 import 'package:uwalls/shared/interfaces/button.dart';
 import 'package:uwalls/shared/interfaces/image.dart';
 import 'package:uwalls/shared/interfaces/other.dart';
@@ -22,6 +24,8 @@ class LoginPage extends StatelessWidget {
 
     final mediaApp = MediaQuery.of(context);
     final themeApp = Theme.of(context);
+
+    final authvm = Get.find<AuthController>();
 
     final topPadding = (mediaApp.viewPadding.top + (Platform.isAndroid ? kToolbarHeight : AppDimens.appBarSize));
     final bottomPadding = (mediaApp.viewPadding.bottom + kBottomNavigationBarHeight + AppDimens.primaryPaddingSize);
@@ -44,7 +48,8 @@ class LoginPage extends StatelessWidget {
                 transitionOnUserGestures: true,
                 child: ImageAsset(
                   src: logoUwalls,
-                  width: mediaApp.size.width * 0.5,
+                  width: mediaApp.size.width * 0.4,
+                  height: mediaApp.size.width * 0.4,
                 ),
               ),
               AppDimens.gap20,
@@ -93,9 +98,7 @@ class LoginPage extends StatelessWidget {
                 label: 'Google', 
                 btnColor: themeApp.cardColor,
                 borderColor: themeApp.cardColor,
-                onPressed: () {
-                  
-                },
+                onPressed: () => authvm.loginWithGoogle(),
               )
             ],
           ),

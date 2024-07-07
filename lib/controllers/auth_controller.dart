@@ -1,8 +1,10 @@
 import 'dart:developer';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:uwalls/models/profile_model.dart';
 import 'package:uwalls/shared/routes/routes.dart';
 import 'package:uwalls/shared/routes/routes_navigator.dart';
@@ -10,8 +12,13 @@ import 'package:uwalls/shared/utils/stateid.dart';
 
 class AuthController extends GetxController {
 
-  FirebaseAuth auth = FirebaseAuth.instance;
+  final auth = FirebaseAuth.instance;
+  final firestore = FirebaseFirestore.instance;
   ProfileModel profile = const ProfileModel();
+
+  String userReferences = '-';
+
+  String userAvatar = 'https://firebasestorage.googleapis.com/v0/b/uwalls-caa87.appspot.com/o/asset%2Favatar.jpg?alt=media&token=5a85f041-6d30-4e03-834d-f6a5dfffdf2e';
   
   @override
   void onReady() {
@@ -30,15 +37,39 @@ class AuthController extends GetxController {
     }
   }
 
-  void setProfileUser({required User user}) {
-    profile = ProfileModel(
-      id: user.uid,
-      photo: user.photoURL ?? '-',
-      name: user.displayName ?? 'Full Name',
-      email: user.email ?? 'Email Address',
-      phone: user.phoneNumber ?? 'Phone Number',
-    );
-    AppNavigator.pushReplacement(route: AppRoutes.mainRoute);
+  void setProfileUser({required User user}) async {
+    if(userReferences == '-'){
+      userReferences = 'users/${user.uid}';
+    }
+    await getUserDetailFirestore();
+    AppNavigator.pushRemoveAll(route: AppRoutes.mainRoute);
+  }
+
+  Future<void> saveUserToFirestore({required int action, required User user}) async {
+    userReferences = 'users/${user.uid}';
+    Map<String, dynamic> data = <String, dynamic>{
+      'id': user.uid,
+      'photo': action == 10 ? userAvatar : user.photoURL,
+      'name': action == 10 ? '$firstName $lastName' : user.displayName,
+      'email': user.email,
+      'phone': user.phoneNumber ?? '-',
+    };
+    await firestore.doc(userReferences).set(data);
+  }
+
+  Future<void> getUserDetailFirestore() async {
+    await firestore.doc(userReferences).get().then((value) {
+      if(value.exists){
+        profile = ProfileModel(
+          id: value.get('id'),
+          photo: value.get('photo'),
+          name: value.get('name'),
+          email: value.get('email'),
+          phone: value.get('phone'),
+        );
+        update();
+      }
+    });
   }
 
   //! SIGN IN ACCOUNT
@@ -91,6 +122,25 @@ class AuthController extends GetxController {
       } else {
         log('KESINI => ${e.code}');
       }
+    }
+  }
+
+  void loginWithGoogle() async {
+    try {
+      final googleAccount = await GoogleSignIn().signIn();
+      final googleAuth = await googleAccount?.authentication;
+      
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth?.accessToken,
+        idToken: googleAuth?.idToken,
+      );
+
+      await auth.signInWithCredential(credential).then((value) async {
+        await saveUserToFirestore(action: 20, user: value.user!);
+        setProfileUser(user: value.user!);
+      });
+    } on FirebaseAuthException catch (e) {
+      log('KESINI => ${e.code}');
     }
   }
 
@@ -151,7 +201,8 @@ class AuthController extends GetxController {
       await auth.createUserWithEmailAndPassword(
         email: emailReg, 
         password: passwordReg,
-      ).then((value) {
+      ).then((value) async {
+        await saveUserToFirestore(action: 10, user: value.user!);
         setProfileUser(user: value.user!);
       });
     } on FirebaseAuthException catch (e) {
@@ -169,7 +220,7 @@ class AuthController extends GetxController {
 
   //! SIGN OUT ACCOUNT
   void logoutAccount() async {
-    auth.signOut().then((value) => AppNavigator.push(route: AppRoutes.loginRoute));
+    await auth.signOut().then((value) => AppNavigator.pushRemoveAll(route: AppRoutes.loginRoute));
   }
 
 }

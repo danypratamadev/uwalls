@@ -11,6 +11,7 @@ class ImageAsset extends StatelessWidget {
   final String src;
   final BoxFit? fit;
   final FilterQuality? quality;
+  final double? chacheWidth;
 
   const ImageAsset({
     super.key, 
@@ -19,16 +20,21 @@ class ImageAsset extends StatelessWidget {
     required this.src, 
     this.fit,
     this.quality,
+    this.chacheWidth,
   });
 
   @override
   Widget build(BuildContext context) {
+
+    final mediaApp = MediaQuery.of(context);
+
     return Image.asset(
       src,
       width: width,
       height: height,
       fit: fit ?? BoxFit.cover,
       filterQuality: quality ?? FilterQuality.medium,
+      cacheWidth: ((chacheWidth ?? 100) * mediaApp.devicePixelRatio).round(),
     );
   }
   

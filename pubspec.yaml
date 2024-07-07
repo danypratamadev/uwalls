@@ -17,11 +17,13 @@ dependencies:
   email_validator: ^3.0.0
   cupertino_icons: ^1.0.6
   cloud_firestore: ^5.0.2
+  google_sign_in: ^6.2.1
   adaptive_theme: ^3.6.0
   flutter_bounce: ^1.1.0
   firebase_core: ^3.1.1
   firebase_auth: ^5.1.1
   smooth_corner: ^1.1.0
+  random_string: ^2.3.1
   fluttertoast: ^8.2.6
   google_fonts: ^6.2.1
   iconsax_plus: ^1.0.0

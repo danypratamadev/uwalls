@@ -4,9 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:uwalls/controllers/auth_controller.dart';
 import 'package:uwalls/shared/interfaces/button.dart';
-import 'package:uwalls/shared/interfaces/text.dart';
 import 'package:uwalls/shared/themes/colors.dart';
 import 'package:uwalls/shared/themes/dimens.dart';
+import 'package:uwalls/shared/themes/shortcut.dart';
+import 'package:uwalls/views/widgets/card/user_profile_card.dart';
 
 class AccountPage extends StatelessWidget {
   const AccountPage({super.key});
@@ -31,20 +32,9 @@ class AccountPage extends StatelessWidget {
         ),
         physics: const BouncingScrollPhysics(),
         child: Column(
+          crossAxisAlignment: startCrossAxis,
           children: [
-            GetBuilder<AuthController>(
-              builder: (value) => Column(
-                children: [
-                  TitleText(
-                    label: value.profile.name
-                  ),
-                  AppDimens.gap3,
-                  CaptionText(
-                    label: value.profile.email
-                  )
-                ],
-              ),
-            ),
+            const UserProfileCard(),
             AppDimens.gap32,
             SecondaryButton(
               label: 'Sign Out', 
