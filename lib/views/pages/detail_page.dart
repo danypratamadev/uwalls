@@ -17,6 +17,7 @@ class DetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final argument = Get.arguments;
+    final int action = argument['action'];
     final PhotoModel photo = argument['photo'];
     final Color bgColor = argument['bgcolor'];
 
@@ -31,7 +32,7 @@ class DetailPage extends StatelessWidget {
           GestureDetector(
             onTap: () => appvm.onChangePreview(),
             child: Hero(
-              tag: photo.id,
+              tag: '${photo.id}@$action',
               transitionOnUserGestures: true,
               child: CachedNetworkImage(
                 width: double.maxFinite,
@@ -62,7 +63,7 @@ class DetailPage extends StatelessWidget {
             right: AppDimens.primaryPaddingSize,
             bottom: -AppDimens.size54,
             child: Center(
-              child: PhotoItem(photo: photo, bgColor: bgColor)
+              child: PhotoItem(action: action, photo: photo, bgColor: bgColor)
             )
           )
         ],

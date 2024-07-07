@@ -17,4 +17,7 @@ class AppStateId {
   static const String search = 'search';
   static const String regetSearch = 'regetSearch';
 
+  static const String saved = 'saved';
+  static const String liked = 'liked';
+
 }

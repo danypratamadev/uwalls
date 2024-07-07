@@ -23,7 +23,7 @@ class SearchGrid extends StatelessWidget {
         physics: const NeverScrollableScrollPhysics(),
         padding: EdgeInsets.zero,
         itemCount: value.listSearch.length,
-        itemBuilder: (context, index) => PhotoCard(action: 20, photo: value.listSearch[index]),
+        itemBuilder: (context, index) => PhotoCard(action: 30, photo: value.listSearch[index]),
       ),
     );
   }

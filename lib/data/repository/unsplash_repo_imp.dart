@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:tuple/tuple.dart';
 import 'package:uwalls/data/endpoint/api_end_points.dart';
@@ -48,6 +50,7 @@ class UnsplashRepoImp implements UnsplashRepo {
           'count': 10
         }
       );
+      log('RECOMENDATION => ${response.toString()}');
       List<PhotoModel> result = List<PhotoModel>.from(response.map((data) => 
         PhotoModel.fromJson(json: data)));
       return result;

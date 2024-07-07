@@ -7,13 +7,13 @@ class DetailItem extends StatelessWidget {
 
   final String label;
   final String value;
-  final Color textColor;
+  final Color? textColor;
 
   const DetailItem({
     super.key, 
     required this.label, 
     required this.value,
-    required this.textColor,
+    this.textColor,
   });
 
   @override
@@ -29,7 +29,7 @@ class DetailItem extends StatelessWidget {
         AppDimens.gap8,
         CaptionText(
           label: label,
-          textColor: textColor.withOpacity(0.8),
+          textColor: textColor?.withOpacity(0.8),
         ),
       ],
     );

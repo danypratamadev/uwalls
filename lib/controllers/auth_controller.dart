@@ -23,7 +23,7 @@ class AuthController extends GetxController {
   @override
   void onReady() {
     super.onReady();
-    Future.delayed(const Duration(milliseconds: 1500), () => 
+    Future.delayed(const Duration(milliseconds: 500), () => 
       getCurrentUser()
     );
   }

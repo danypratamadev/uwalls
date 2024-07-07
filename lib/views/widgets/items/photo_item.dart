@@ -8,10 +8,11 @@ import 'package:uwalls/shared/themes/shortcut.dart';
 
 class PhotoItem extends StatelessWidget {
 
+  final int action;
   final PhotoModel photo;
   final Color bgColor;
 
-  const PhotoItem({super.key, required this.photo, required this.bgColor});
+  const PhotoItem({super.key, required this.action, required this.photo, required this.bgColor});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +34,7 @@ class PhotoItem extends StatelessWidget {
           mainAxisAlignment: centerMainAxis,
           children: [
             Hero(
-              tag: '${photo.id}@title',
+              tag: '${photo.id}@title@$action',
               transitionOnUserGestures: true,
               child: CaptionText(
                 label: photo.altDescription,
@@ -44,7 +45,7 @@ class PhotoItem extends StatelessWidget {
             ),
             AppDimens.gap2,
             Hero(
-              tag: '${photo.id}@caption',
+              tag: '${photo.id}@caption@$action',
               transitionOnUserGestures: true,
               child: Row(
                 children: [

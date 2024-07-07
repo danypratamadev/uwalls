@@ -3,14 +3,14 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
+import 'package:intl/intl.dart';
 import 'package:smooth_corner/smooth_corner.dart';
 import 'package:uwalls/controllers/app_controller.dart';
+import 'package:uwalls/controllers/firestore_controller.dart';
 import 'package:uwalls/models/photo_model.dart';
 import 'package:uwalls/shared/interfaces/button.dart';
 import 'package:uwalls/shared/interfaces/image.dart';
 import 'package:uwalls/shared/interfaces/text.dart';
-import 'package:uwalls/shared/routes/routes.dart';
-import 'package:uwalls/shared/routes/routes_navigator.dart';
 import 'package:uwalls/shared/themes/colors.dart';
 import 'package:uwalls/shared/themes/dimens.dart';
 import 'package:uwalls/shared/themes/shortcut.dart';
@@ -27,6 +27,7 @@ class DetailPhotoCard extends StatelessWidget {
     final themeApp = Theme.of(context);
 
     final argument = Get.arguments;
+    final int action = argument['action'];
     final PhotoModel photo = argument['photo'];
     final Color bgColor = argument['bgcolor'];
 
@@ -41,10 +42,13 @@ class DetailPhotoCard extends StatelessWidget {
         duration: const Duration(milliseconds: 500),
         curve: Curves.fastEaseInToSlowEaseOut,
         child: Hero(
-          tag: '${photo.id}@bg',
+          tag: '${photo.id}@bg@$action',
           transitionOnUserGestures: true,
           child: SmoothClipRRect(
-            borderRadius: BorderRadius.circular(AppDimens.quaternaryRoundedCardSize),
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(AppDimens.quaternaryRoundedCardSize),
+              topRight: Radius.circular(AppDimens.quaternaryRoundedCardSize),
+            ),
             smoothness: AppDimens.smoothnessCorner,
             child: BackdropFilter(
               filter: ImageFilter.blur(sigmaX: 50, sigmaY: 50),
@@ -60,69 +64,7 @@ class DetailPhotoCard extends StatelessWidget {
                   ),
                   physics: const NeverScrollableScrollPhysics(),
                   children: [
-                    Row(
-                      children: [
-                        ClipOval(
-                          child: ImageNetwork(
-                            url: photo.user.avatar.medium,
-                            width: AppDimens.size40,
-                            height: AppDimens.size40,
-                          ),
-                        ),
-                        AppDimens.gap16,
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: startCrossAxis,
-                            children: [
-                              BodyText(
-                                label: photo.user.name,
-                                textColor: displayColor,
-                                fontWeight: fontMedium,
-                              ),
-                              AppDimens.gap2,
-                              OverlineText(
-                                label: photo.user.username,
-                                textColor: displayColor.withOpacity(0.7),
-                              ),
-                            ],
-                          )
-                        ),
-                        AppDimens.gap12,
-                        Transform.translate(
-                          offset: const Offset(AppDimens.size3, 0.0),
-                          child: Row(
-                            mainAxisSize: minSize,
-                            children: [
-                              AppIconButton(
-                                icon: IconsaxPlusBold.heart, 
-                                bgColor: bgColor,
-                                iconColor: displayColor.withOpacity(0.6),
-                                onPressed: () => AppNavigator.push(
-                                  route: AppRoutes.previewRoute,
-                                  argument: {
-                                    'id': photo.id,
-                                    'url': photo.urls,
-                                  }
-                                ),
-                              ),
-                              AppDimens.gap10,
-                              AppIconButton(
-                                icon: IconsaxPlusBold.archive_1, 
-                                bgColor: bgColor,
-                                iconColor: displayColor.withOpacity(0.6),
-                                onPressed: () => AppNavigator.push(
-                                  route: AppRoutes.previewRoute,
-                                  argument: {
-                                    'id': photo.id,
-                                    'url': photo.urls,
-                                  }
-                                ),
-                              ),
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
+                    const DetailUserAction(),
                     AppDimens.gap24,
                     CaptionText(
                       label: 'Description:',
@@ -169,12 +111,12 @@ class DetailPhotoCard extends StatelessWidget {
                         
                       },
                     ),
-                    // AppDimens.gap20,
-                    // CaptionText(
-                    //   label: 'Published on ${DateFormat('MMMM dd, yyyy').format(photo.created)}',
-                    //   textColor: displayColor.withOpacity(0.7),
-                    //   textAlign: centerText,
-                    // ),
+                    AppDimens.gap20,
+                    CaptionText(
+                      label: 'Published on ${DateFormat('MMMM dd, yyyy').format(photo.created)}',
+                      textColor: displayColor.withOpacity(0.7),
+                      textAlign: centerText,
+                    ),
                   ],
                 ),
               ),
@@ -182,6 +124,84 @@ class DetailPhotoCard extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class DetailUserAction extends StatelessWidget {
+  const DetailUserAction({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+
+    final themeApp = Theme.of(context);
+
+    final firestorevm = Get.find<FirestoreController>();
+
+    final argument = Get.arguments;
+    final PhotoModel photo = argument['photo'];
+    final Color bgColor = argument['bgcolor'];
+
+    Color displayColor = (bgColor.computeLuminance() < 0.5 ? AppColors.whiteTextColor : themeApp.scaffoldBackgroundColor);
+
+    return Row(
+      children: [
+        ClipOval(
+          child: ImageNetwork(
+            url: photo.user.avatar.medium,
+            width: AppDimens.size40,
+            height: AppDimens.size40,
+          ),
+        ),
+        AppDimens.gap16,
+        Expanded(
+          child: Column(
+            crossAxisAlignment: startCrossAxis,
+            children: [
+              BodyText(
+                label: photo.user.name,
+                textColor: displayColor,
+                fontWeight: fontMedium,
+              ),
+              AppDimens.gap2,
+              OverlineText(
+                label: photo.user.username,
+                textColor: displayColor.withOpacity(0.7),
+              ),
+            ],
+          )
+        ),
+        AppDimens.gap12,
+        Transform.translate(
+          offset: const Offset(AppDimens.size3, 0.0),
+          child: Row(
+            mainAxisSize: minSize,
+            children: [
+              GetBuilder<FirestoreController>(
+                id: AppStateId.liked,
+                builder: (value) => AppIconButton(
+                  icon: firestorevm.checkLikedPhoto(id: photo.id) ? IconsaxPlusBold.heart : 
+                    IconsaxPlusLinear.heart, 
+                  bgColor: bgColor,
+                  iconColor: displayColor.withOpacity(0.6),
+                  onPressed: () => firestorevm.addToLikedPhotos(photo: photo)
+                ),
+              ),
+              AppDimens.gap10,
+              GetBuilder<FirestoreController>(
+                id: AppStateId.saved,
+                builder: (value) => AppIconButton(
+                  icon: firestorevm.checkSavedPhoto(id: photo.id) ? IconsaxPlusBold.archive_tick : 
+                    IconsaxPlusLinear.archive_add, 
+                  bgColor: bgColor,
+                  iconColor: displayColor.withOpacity(0.6),
+                  onPressed: () => firestorevm.addToSavedPhotos(photo: photo)
+                ),
+              ),
+            ],
+          ),
+        )
+      ],
     );
   }
 }

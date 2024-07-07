@@ -18,8 +18,10 @@ class PhotoModel {
   final UsersModel user;
   final DateTime created;
   final DateTime updated;
+  DateTime? saved;
+  DateTime? liked;
 
-  const PhotoModel({
+  PhotoModel({
     required this.id, 
     required this.width, 
     required this.height, 
@@ -34,6 +36,8 @@ class PhotoModel {
     required this.user, 
     required this.created, 
     required this.updated,
+    this.saved,
+    this.liked,
   });
 
   factory PhotoModel.fromJson({required Map<String, dynamic> json}) => PhotoModel(
@@ -51,6 +55,8 @@ class PhotoModel {
     user: UsersModel.fromJson(json: json['user']),
     created: DateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").tryParse(json['created_at']) ?? DateTime.now(),
     updated: DateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").tryParse(json['updated_at']) ?? DateTime.now(),
+    saved: DateTime.now(),
+    liked: DateTime.now(),
   );
 
   Map<String, dynamic> toJson() => {
@@ -68,6 +74,8 @@ class PhotoModel {
     'user': user.toJson(),
     'created_at': DateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").format(created),
     'updated_at': DateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").format(updated),
+    'saved_at': DateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").format(saved ?? DateTime.now()),
+    'liked_at': DateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").format(saved ?? DateTime.now()),
   };
 
   @override

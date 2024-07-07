@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:uwalls/bindings/auth_binding.dart';
+import 'package:uwalls/bindings/firestore_binding.dart';
 import 'package:uwalls/bindings/unsplash_binding.dart';
 import 'package:uwalls/views/pages/detail_page.dart';
 import 'package:uwalls/views/pages/login_page.dart';
@@ -23,7 +24,10 @@ class AppRoutes {
     GetPage(
       name: rootRoute, 
       page: () => const SplashPage(),
-      binding: AuthBinding(),
+      bindings: [
+        AuthBinding(),
+        FirestoreBinding(),
+      ]
     ),
     GetPage(
       name: loginRoute, 

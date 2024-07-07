@@ -36,7 +36,7 @@ class PhotoCard extends StatelessWidget {
         if(action == 20) {
           FocusScope.of(context).requestFocus(FocusNode());
         }
-        AppNavigator.push(route: AppRoutes.detailRoute, argument: {'photo': photo, 'bgcolor': bgColor});
+        AppNavigator.push(route: AppRoutes.detailRoute, argument: {'action': action, 'photo': photo, 'bgcolor': bgColor});
       },
       child: Stack(
         children: [
@@ -46,7 +46,7 @@ class PhotoCard extends StatelessWidget {
             top: 0.0,
             bottom: 0.0,
             child: Hero(
-              tag: photo.id,
+              tag: '${photo.id}@$action',
               transitionOnUserGestures: true,
               child: SmoothClipRRect(
                 borderRadius: BorderRadius.circular(AppDimens.quaternaryRoundedCardSize),
@@ -63,7 +63,7 @@ class PhotoCard extends StatelessWidget {
             right: 0.0,
             bottom: 0.0,
             child: Hero(
-              tag: '${photo.id}@bg',
+              tag: '${photo.id}@bg@$action',
               transitionOnUserGestures: true,
               child: SmoothClipRRect(
                 borderRadius: const BorderRadius.only(
@@ -88,7 +88,7 @@ class PhotoCard extends StatelessWidget {
             left: 0.0,
             right: 0.0,
             bottom: 0.0,
-            child: PhotoItem(photo: photo, bgColor: bgColor)
+            child: PhotoItem(action: action, photo: photo, bgColor: bgColor)
           )
         ],
       ),
