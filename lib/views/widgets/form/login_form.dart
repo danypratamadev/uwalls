@@ -69,6 +69,7 @@ class LoginForm extends StatelessWidget {
           id: AppStateId.btnLogin,
           builder: (value) => PrimaryButton(
             label: 'Sign In', 
+            loading: value.loadingLogin,
             onPressed: value.btnEnable ? () {
               FocusScope.of(context).requestFocus(FocusNode());
               authvm.loginAccount();

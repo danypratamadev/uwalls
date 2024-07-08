@@ -14,6 +14,7 @@ import 'package:uwalls/shared/routes/routes_navigator.dart';
 import 'package:uwalls/shared/themes/dimens.dart';
 import 'package:uwalls/shared/themes/shortcut.dart';
 import 'package:uwalls/shared/utils/images.dart';
+import 'package:uwalls/shared/utils/stateid.dart';
 import 'package:uwalls/views/widgets/form/login_form.dart';
 
 class LoginPage extends StatelessWidget {
@@ -95,6 +96,7 @@ class LoginPage extends StatelessWidget {
               ),
               AppDimens.gap32,
               GetBuilder<AuthController>(
+                id: AppStateId.btnGoogle,
                 builder: (value) => SecondaryButton(
                   label: 'Google', 
                   btnColor: themeApp.cardColor,
