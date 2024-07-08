@@ -24,10 +24,7 @@ class AppRoutes {
     GetPage(
       name: rootRoute, 
       page: () => const SplashPage(),
-      bindings: [
-        AuthBinding(),
-        FirestoreBinding(),
-      ]
+      binding: AuthBinding(),
     ),
     GetPage(
       name: loginRoute, 
@@ -40,7 +37,10 @@ class AppRoutes {
     GetPage(
       name: mainRoute, 
       page: () => const MainPage(),
-      binding: UnsplashBinding()
+      bindings: [
+        UnsplashBinding(),
+        FirestoreBinding(),
+      ]
     ),
     GetPage(
       name: searchRoute, 

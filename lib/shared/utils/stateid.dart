@@ -2,6 +2,7 @@ class AppStateId {
 
   static const String obscurePass = 'obscurePass';
   static const String btnLogin = 'btnLogin';
+  static const String btnGoogle = 'btnGoogle';
   
   static const String obscurePassReg = 'obscurePassReg';
   static const String btnRegister = 'btnRegister';

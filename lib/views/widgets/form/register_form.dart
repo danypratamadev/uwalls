@@ -110,6 +110,7 @@ class RegisterForm extends StatelessWidget {
           id: AppStateId.btnRegister,
           builder: (value) => PrimaryButton(
             label: 'Register Now', 
+            loading: value.loadingReg,
             onPressed: value.btnEnableReg ? () {
               FocusScope.of(context).requestFocus(FocusNode());
               authvm.registerAccount();

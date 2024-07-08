@@ -94,11 +94,14 @@ class LoginPage extends StatelessWidget {
                 ],
               ),
               AppDimens.gap32,
-              SecondaryButton(
-                label: 'Google', 
-                btnColor: themeApp.cardColor,
-                borderColor: themeApp.cardColor,
-                onPressed: () => authvm.loginWithGoogle(),
+              GetBuilder<AuthController>(
+                builder: (value) => SecondaryButton(
+                  label: 'Google', 
+                  btnColor: themeApp.cardColor,
+                  borderColor: themeApp.cardColor,
+                  loading: value.loadingGoogle,
+                  onPressed: () => authvm.loginWithGoogle(),
+                ),
               )
             ],
           ),

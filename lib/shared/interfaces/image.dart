@@ -11,7 +11,7 @@ class ImageAsset extends StatelessWidget {
   final String src;
   final BoxFit? fit;
   final FilterQuality? quality;
-  final double? chacheWidth;
+  final double? cacheWidth;
 
   const ImageAsset({
     super.key, 
@@ -20,7 +20,7 @@ class ImageAsset extends StatelessWidget {
     required this.src, 
     this.fit,
     this.quality,
-    this.chacheWidth,
+    this.cacheWidth,
   });
 
   @override
@@ -34,7 +34,7 @@ class ImageAsset extends StatelessWidget {
       height: height,
       fit: fit ?? BoxFit.cover,
       filterQuality: quality ?? FilterQuality.medium,
-      cacheWidth: ((chacheWidth ?? AppDimens.size72) * mediaApp.devicePixelRatio).round(),
+      cacheWidth: ((cacheWidth ?? AppDimens.size72) * mediaApp.devicePixelRatio).round(),
     );
   }
   
@@ -48,7 +48,7 @@ class ImageNetwork extends StatelessWidget {
   final BoxFit? fit;
   final FilterQuality? quality;
   final double? radius;
-  final double? chacheWidth;
+  final double? cacheWidth;
 
   const ImageNetwork({
     super.key, 
@@ -58,7 +58,7 @@ class ImageNetwork extends StatelessWidget {
     this.fit,
     this.quality,
     this.radius,
-    this.chacheWidth,
+    this.cacheWidth,
   });
 
   @override
@@ -76,7 +76,7 @@ class ImageNetwork extends StatelessWidget {
         imageUrl: url,
         fit: fit ?? BoxFit.cover,
         filterQuality: quality ?? FilterQuality.medium,
-        memCacheWidth: ((chacheWidth ?? AppDimens.size72) * mediaApp.devicePixelRatio).round(),
+        memCacheWidth: ((cacheWidth ?? AppDimens.size72) * mediaApp.devicePixelRatio).round(),
         placeholder: (context, url) => Material(
           color: themeApp.cardColor,
         ),

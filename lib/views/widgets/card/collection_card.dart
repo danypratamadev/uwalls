@@ -40,7 +40,7 @@ class CollectionCard extends StatelessWidget {
                 child: ImageNetwork(
                   width: double.maxFinite,
                   url: collection.cover.urls.small,
-                  chacheWidth: AppDimens.size100,
+                  cacheWidth: AppDimens.size100,
                 ),
               ),
             ),

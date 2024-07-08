@@ -80,6 +80,8 @@ class AuthController extends GetxController {
   bool btnEnable = false;
   bool btnLoading = false;
   bool obscurePass = true;
+  bool loadingLogin = false;
+  bool loadingGoogle = false;
 
   //? METHOD
   void onChangeObscure() {
@@ -107,6 +109,8 @@ class AuthController extends GetxController {
   }
 
   void loginAccount() async {
+    loadingLogin = true;
+    update([AppStateId.btnLogin]);
     try {
       await auth.signInWithEmailAndPassword(
         email: email, 
@@ -122,10 +126,14 @@ class AuthController extends GetxController {
       } else {
         log('KESINI => ${e.code}');
       }
+      loadingLogin = false;
+      update([AppStateId.btnLogin]);
     }
   }
 
   void loginWithGoogle() async {
+    loadingGoogle = true;
+    update([AppStateId.btnGoogle]);
     try {
       final googleAccount = await GoogleSignIn().signIn();
       final googleAuth = await googleAccount?.authentication;
@@ -141,6 +149,8 @@ class AuthController extends GetxController {
       });
     } on FirebaseAuthException catch (e) {
       log('KESINI => ${e.code}');
+      loadingGoogle = false;
+      update([AppStateId.btnGoogle]);
     }
   }
 
@@ -156,6 +166,7 @@ class AuthController extends GetxController {
   bool btnLoadingReg = false;
   bool obscurePassReg = true;
   bool obscureConfirmPassReg = true;
+  bool loadingReg = false;
 
   //? METHOD
   void onChangeObscureReg({required int action}) {
@@ -197,6 +208,8 @@ class AuthController extends GetxController {
   }
 
   void registerAccount() async {
+    loadingReg = true;
+    update([AppStateId.btnRegister]);
     try {
       await auth.createUserWithEmailAndPassword(
         email: emailReg, 
@@ -215,6 +228,8 @@ class AuthController extends GetxController {
       } else {
         log('KESINI => ${e.code}');
       }
+      loadingReg = false;
+      update([AppStateId.btnRegister]);
     }
   }
 

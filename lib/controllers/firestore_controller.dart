@@ -26,7 +26,7 @@ class FirestoreController extends GetxController {
     );
   }
 
-  void getCurrentUser() async {
+  Future<void> getCurrentUser() async {
     if(auth.currentUser != null) {
       final User user = auth.currentUser!;
       if(userReferences == '-'){

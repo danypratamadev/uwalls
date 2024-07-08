@@ -120,7 +120,7 @@ class SecondaryButton extends StatelessWidget {
               smoothness: AppDimens.smoothnessCorner,
               side: BorderSide(
                 width: AppDimens.primaryDividerSize,
-                color: !loading ? (borderColor ?? themeApp.primaryColor) : themeApp.dividerColor,
+                color: !loading ? (borderColor ?? themeApp.primaryColor) : (borderColor ?? themeApp.dividerColor),
               )
             ),
           )
